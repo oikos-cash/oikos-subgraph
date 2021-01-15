@@ -1,16 +1,20 @@
 import { Synthetix, SynthExchange as SynthExchangeEvent } from '../generated/Synthetix/Synthetix';
-import { Synthetix as SynthetixForXDR4 } from '../generated/SynthXDR4/Synthetix';
-import { Synth as SynthXDR4, Issued } from '../generated/SynthXDR4/Synth';
-import { Synthetix as SynthetixForXDR32 } from '../generated/SynthXDR32/Synthetix';
-import { Synth as SynthXDR32 } from '../generated/SynthXDR32/Synth';
+import { Synth as SynthXDR32 } from '../generated/SynthODR/Synth';
 
-import { Total, SynthExchange, Exchanger } from '../generated/schema';
+import { Total, DailyTotal, DailyExchanger, FifteenMinuteExchanger, FifteenMinuteTotal, SynthExchange, Exchanger } from '../generated/schema';
 
 import { BigInt, Address } from '@graphprotocol/graph-ts';
 
 import { exchangesToIgnore } from './exchangesToIgnore';
 
-import { attemptEffectiveValue, sUSD32, sUSD4 } from './common';
+import { attemptEffectiveValue, sUSD32,  } from './common';
+
+import {
+  Synth,
+  Transfer as SynthTransferEvent,
+  Issued as IssuedEvent,
+  Burned as BurnedEvent,
+} from '../generated/SynthsUSD/Synth';
 
 function getMetadata(): Total {
   let total = Total.load('1');
@@ -34,6 +38,34 @@ function incrementMetadata(field: string): void {
   metadata.save();
 }
 
+function loadTotal(): Total {
+  let newTotal = new Total('1');
+  newTotal.trades = BigInt.fromI32(0);
+  newTotal.exchangers = BigInt.fromI32(0);
+  newTotal.exchangeUSDTally = BigInt.fromI32(0);
+  newTotal.totalFeesGeneratedInUSD = BigInt.fromI32(0);
+  return newTotal;
+}
+
+
+function loadDailyTotal(id: string): DailyTotal {
+  let newDailyTotal = new DailyTotal(id);
+  newDailyTotal.trades = BigInt.fromI32(0);
+  newDailyTotal.exchangers = BigInt.fromI32(0);
+  newDailyTotal.exchangeUSDTally = BigInt.fromI32(0);
+  newDailyTotal.totalFeesGeneratedInUSD = BigInt.fromI32(0);
+  return newDailyTotal;
+}
+
+function loadFifteenMinuteTotal(id: string): FifteenMinuteTotal {
+  let newFifteenMinuteTotal = new FifteenMinuteTotal(id);
+  newFifteenMinuteTotal.trades = BigInt.fromI32(0);
+  newFifteenMinuteTotal.exchangers = BigInt.fromI32(0);
+  newFifteenMinuteTotal.exchangeUSDTally = BigInt.fromI32(0);
+  newFifteenMinuteTotal.totalFeesGeneratedInUSD = BigInt.fromI32(0);
+  return newFifteenMinuteTotal;
+}
+
 function trackExchanger(account: Address): void {
   let existingExchanger = Exchanger.load(account.toHex());
   if (existingExchanger == null) {
@@ -43,15 +75,30 @@ function trackExchanger(account: Address): void {
   }
 }
 
-function handleSynthExchange(event: SynthExchangeEvent, useBytes32: boolean): void {
+export function handleSynthExchange(event: SynthExchangeEvent): void {
   if (exchangesToIgnore.indexOf(event.transaction.hash.toHex()) >= 0) {
     return;
   }
 
   let synthetix = Synthetix.bind(event.address);
-  let toAmount = attemptEffectiveValue(synthetix, event.params.fromCurrencyKey, event.params.fromAmount, useBytes32);
-
+  let toAmount = attemptEffectiveValue(synthetix, event.params.fromCurrencyKey, event.params.fromAmount);
+  let account = event.params.account;
   let entity = new SynthExchange(event.transaction.hash.toHex() + '-' + event.logIndex.toString());
+  let fromAmountInUSD = BigInt.fromI32(0);
+  let toAmountInUSD = BigInt.fromI32(0);
+  let feesInUSD = BigInt.fromI32(0);
+
+  let effectiveValueTry = synthetix.try_effectiveValue(
+    event.params.fromCurrencyKey,
+    event.params.fromAmount,
+    sUSD32,
+  );
+  if (!effectiveValueTry.reverted) {
+    fromAmountInUSD = effectiveValueTry.value;
+    toAmountInUSD = synthetix.effectiveValue(event.params.toCurrencyKey, event.params.toAmount, sUSD32);
+  }
+  feesInUSD = fromAmountInUSD.minus(toAmountInUSD);
+
   entity.account = event.params.account;
   entity.from = event.transaction.from;
   entity.fromCurrencyKey = event.params.fromCurrencyKey;
@@ -65,6 +112,70 @@ function handleSynthExchange(event: SynthExchangeEvent, useBytes32: boolean): vo
   entity.amountInUSD = toAmount; // attemptEffectiveValue() can return null but this value can not be
   entity.save();
 
+  let timestamp = event.block.timestamp.toI32();
+  let dayID = timestamp / 86400;
+  let fifteenMinuteID = timestamp / 900;
+
+  let total = Total.load('1');
+  let dailyTotal = DailyTotal.load(dayID.toString());
+  let fifteenMinuteTotal = FifteenMinuteTotal.load(fifteenMinuteID.toString());
+
+  if (total == null) {
+    total = loadTotal();
+  }
+
+  if (dailyTotal == null) {
+    dailyTotal = loadDailyTotal(dayID.toString());
+  }
+
+  if (fifteenMinuteTotal == null) {
+    fifteenMinuteTotal = loadFifteenMinuteTotal(fifteenMinuteID.toString());
+  }
+
+  let existingExchanger = Exchanger.load(account.toHex());
+  let existingDailyExchanger = DailyExchanger.load(dayID.toString() + '-' + account.toHex());
+  let existingFifteenMinuteExchanger = FifteenMinuteExchanger.load(fifteenMinuteID.toString() + '-' + account.toHex());
+
+  if (existingExchanger == null) {
+    total.exchangers = total.exchangers.plus(BigInt.fromI32(1));
+    let exchanger = new Exchanger(account.toHex());
+    exchanger.save();
+  }
+
+ 
+
+  if (existingDailyExchanger == null) {
+    dailyTotal.exchangers = dailyTotal.exchangers.plus(BigInt.fromI32(1));
+    let dailyExchanger = new DailyExchanger(dayID.toString() + '-' + account.toHex());
+    dailyExchanger.save();
+  }
+
+  if (existingFifteenMinuteExchanger == null) {
+    fifteenMinuteTotal.exchangers = fifteenMinuteTotal.exchangers.plus(BigInt.fromI32(1));
+    let fifteenMinuteExchanger = new FifteenMinuteExchanger(fifteenMinuteID.toString() + '-' + account.toHex());
+    fifteenMinuteExchanger.save();
+  }
+ 
+  total.trades = total.trades.plus(BigInt.fromI32(1));
+  dailyTotal.trades = dailyTotal.trades.plus(BigInt.fromI32(1));
+  fifteenMinuteTotal.trades = fifteenMinuteTotal.trades.plus(BigInt.fromI32(1));
+ 
+  if (fromAmountInUSD != null && feesInUSD != null) {
+
+    total = addTotalFeesAndVolume(total as Total, fromAmountInUSD, feesInUSD);
+    dailyTotal = addDailyTotalFeesAndVolume(dailyTotal as DailyTotal, fromAmountInUSD, feesInUSD);
+    fifteenMinuteTotal = addFifteenMinuteTotalFeesAndVolume(
+      fifteenMinuteTotal as FifteenMinuteTotal,
+      fromAmountInUSD,
+      feesInUSD,
+    );
+  }
+
+  total.save();
+  dailyTotal.save();
+  fifteenMinuteTotal.save();
+
+
   trackExchanger(event.transaction.from);
 
   if (toAmount != null) {
@@ -75,45 +186,41 @@ function handleSynthExchange(event: SynthExchangeEvent, useBytes32: boolean): vo
   }
 }
 
-export function handleSynthExchange4(event: SynthExchangeEvent): void {
-  handleSynthExchange(event, false);
-}
-
-export function handleSynthExchange32(event: SynthExchangeEvent): void {
-  handleSynthExchange(event, true);
-}
 
 // Issuing of XDR is our fee mechanism
-function handleIssuedXDR(event: Issued, useBytes32: boolean): void {
+export function handleIssuedODR(event: IssuedEvent): void {
   if (exchangesToIgnore.indexOf(event.transaction.hash.toHex()) >= 0) {
     return;
   }
-
-  if (useBytes32) {
     let synthXDR = SynthXDR32.bind(event.address);
-    let synthetix = SynthetixForXDR32.bind(synthXDR.synthetixProxy());
+    let synthetix = Synthetix.bind(synthXDR.synthetixProxy());
     let effectiveValueTry = synthetix.try_effectiveValue(synthXDR.currencyKey(), event.params.value, sUSD32);
     if (!effectiveValueTry.reverted) {
       let metadata = getMetadata();
       metadata.totalFeesGeneratedInUSD = metadata.totalFeesGeneratedInUSD.plus(effectiveValueTry.value);
       metadata.save();
     }
-  } else {
-    // This duping isn't great. We could probably rework it using synthXDR and synthetix as SmartContract and invoke call / tryCall
-    let synthXDR = SynthXDR4.bind(event.address);
-    let synthetix = SynthetixForXDR4.bind(synthXDR.synthetix());
-    let effectiveValueTry = synthetix.try_effectiveValue(synthXDR.currencyKey(), event.params.value, sUSD4);
-    if (!effectiveValueTry.reverted) {
-      let metadata = getMetadata();
-      metadata.totalFeesGeneratedInUSD = metadata.totalFeesGeneratedInUSD.plus(effectiveValueTry.value);
-      metadata.save();
-    }
-  }
+ 
 }
 
-export function handleIssuedXDR32(event: Issued): void {
-  handleIssuedXDR(event, true);
+function addTotalFeesAndVolume(total: Total, fromAmountInUSD: BigInt, feesInUSD: BigInt): Total {
+  total.exchangeUSDTally = total.exchangeUSDTally.plus(fromAmountInUSD);
+  total.totalFeesGeneratedInUSD = total.totalFeesGeneratedInUSD.plus(feesInUSD);
+  return total;
 }
-export function handleIssuedXDR4(event: Issued): void {
-  handleIssuedXDR(event, false);
+
+function addDailyTotalFeesAndVolume(dailyTotal: DailyTotal, fromAmountInUSD: BigInt, feesInUSD: BigInt): DailyTotal {
+  dailyTotal.exchangeUSDTally = dailyTotal.exchangeUSDTally.plus(fromAmountInUSD);
+  dailyTotal.totalFeesGeneratedInUSD = dailyTotal.totalFeesGeneratedInUSD.plus(feesInUSD);
+  return dailyTotal;
+}
+
+function addFifteenMinuteTotalFeesAndVolume(
+  fifteenMinuteTotal: FifteenMinuteTotal,
+  fromAmountInUSD: BigInt,
+  feesInUSD: BigInt,
+): FifteenMinuteTotal {
+  fifteenMinuteTotal.exchangeUSDTally = fifteenMinuteTotal.exchangeUSDTally.plus(fromAmountInUSD);
+  fifteenMinuteTotal.totalFeesGeneratedInUSD = fifteenMinuteTotal.totalFeesGeneratedInUSD.plus(feesInUSD);
+  return fifteenMinuteTotal;
 }

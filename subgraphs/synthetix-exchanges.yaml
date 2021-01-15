@@ -20,10 +20,10 @@ dataSources:
         - SynthExchange
       abis:
         - name: Synthetix
-          file: ./abis/Synthetix_bytes32.json # Can assume bytes32 due to event signature below
+          file: ./abis/Synthetix.json # Can assume bytes32 due to event signature below
       eventHandlers:
         - event: SynthExchange(indexed address,bytes32,uint256,bytes32,uint256,address)
-          handler: handleSynthExchange32
+          handler: handleSynthExchange
   - kind: ethereum/contract
     name: SynthODR
     network: testnet
@@ -40,9 +40,9 @@ dataSources:
         - Issued
       abis:
         - name: Synth
-          file: ./abis/Synth_bytes32.json
+          file: ./abis/Synth.json
         - name: Synthetix
-          file: ./abis/Synthetix_bytes32.json
+          file: ./abis/Synthetix.json
       eventHandlers:
         - event: Issued(indexed address,uint256)
-          handler: handleIssuedXDR32
+          handler: handleIssuedODR
