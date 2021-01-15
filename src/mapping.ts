@@ -15,7 +15,8 @@ import {
         Burned, 
         Issuer, 
         ProxyTargetUpdated, 
-        SNXHolder, 
+        SNXHolder,
+        SynthHolder, 
         DebtSnapshot,  
         TotalActiveStaker, 
         TotalDailyActiveStaker, 
@@ -110,7 +111,7 @@ function trackSNXHolder(snxContract: Address, account: Address): void {
 
 export function handleTransferSNX(event: TransferEvent): void {
   let entity = new Transfer(event.transaction.hash.toHex() + '-' + event.logIndex.toString());
-  entity.source = 'SNX';
+  entity.source = 'OKS';
   entity.from = event.params.from;
   entity.to = event.params.to;
   entity.value = event.params.value;
@@ -123,13 +124,27 @@ export function handleTransferSNX(event: TransferEvent): void {
  
 }
 
+function trackSynthHolder(contract: Synth, source: string, account: Address): void {
+  let entityID = account.toHex() + '-' + source;
+  let entity = SynthHolder.load(entityID);
+  if (entity == null) {
+    entity = new SynthHolder(entityID);
+  }
+  entity.synth = source;
+  entity.balanceOf = contract.balanceOf(account);
+  entity.save();
+}
+
 export function handleTransferSynth(event: SynthTransferEvent): void {
   let contract = Synth.bind(event.address);
   let entity = new Transfer(event.transaction.hash.toHex() + '-' + event.logIndex.toString());
 
-
-    // sUSD contract didn't have the "currencyKey" field prior to the v2 (multicurrency) release
-    entity.source = 'sUSD';
+  let currencyKeyTry = contract.try_currencyKey();
+  if (!currencyKeyTry.reverted) {
+    entity.source = currencyKeyTry.value.toString();
+  } else {
+    entity.source = "sUSD";
+  }
   
   entity.from = event.params.from;
   entity.to = event.params.to;
@@ -137,6 +152,9 @@ export function handleTransferSynth(event: SynthTransferEvent): void {
   entity.timestamp = event.block.timestamp;
   entity.block = event.block.number;
   entity.save();
+
+  trackSynthHolder(contract, entity.source, event.params.from);
+  trackSynthHolder(contract, entity.source, event.params.to);  
 }
 
 export function handleIssuedsUSD(event: IssuedEvent): void {
