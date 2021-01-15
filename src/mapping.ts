@@ -71,7 +71,7 @@ function trackIssuer( account: Address): void {
   issuer.save();
 }
 
-function trackSNXHolder(snxContract: Address, account: Address): void {
+function trackSNXHolder(snxContract: Address, account: Address, timestamp:BigInt, block: BigInt): void {
   let holder = account.toHex();
   // ignore escrow accounts
   if (contracts.get('escrow') == holder || contracts.get('rewardEscrow') == holder) {
@@ -84,7 +84,8 @@ function trackSNXHolder(snxContract: Address, account: Address): void {
   let snxHolder = new SNXHolder(account.toHex());
   let synthetix = SNX.bind(snxContract);
   snxHolder.balanceOf = synthetix.balanceOf(account);
-
+  snxHolder.block = block;
+  snxHolder.timestamp = timestamp;
   let synthetixCollateralTry = synthetix.try_collateral(account);
   if (!synthetixCollateralTry.reverted) {
     snxHolder.collateral = synthetixCollateralTry.value;
@@ -119,12 +120,12 @@ export function handleTransferSNX(event: TransferEvent): void {
   entity.block = event.block.number;
   entity.save();
 
-  trackSNXHolder(event.address, event.params.from);
-  trackSNXHolder(event.address, event.params.to);
+  trackSNXHolder(event.address, event.params.from, event.block.timestamp, event.block.number);
+  trackSNXHolder(event.address, event.params.to, event.block.timestamp, event.block.number);
  
 }
 
-function trackSynthHolder(contract: Synth, source: string, account: Address): void {
+function trackSynthHolder(contract: Synth, source: string, account: Address, block: BigInt, timestamp: BigInt): void {
   let entityID = account.toHex() + '-' + source;
   let entity = SynthHolder.load(entityID);
   if (entity == null) {
@@ -132,6 +133,10 @@ function trackSynthHolder(contract: Synth, source: string, account: Address): vo
   }
   entity.synth = source;
   entity.balanceOf = contract.balanceOf(account);
+  entity.account = account;
+  entity.block = block;
+  entity.timestamp = timestamp;
+  entity.source = source;  
   entity.save();
 }
 
@@ -153,8 +158,8 @@ export function handleTransferSynth(event: SynthTransferEvent): void {
   entity.block = event.block.number;
   entity.save();
 
-  trackSynthHolder(contract, entity.source, event.params.from);
-  trackSynthHolder(contract, entity.source, event.params.to);  
+  trackSynthHolder(contract, entity.source, event.params.from,  event.block.number, event.block.timestamp);
+  trackSynthHolder(contract, entity.source, event.params.to,  event.block.number, event.block.timestamp);  
 }
 
 export function handleIssuedsUSD(event: IssuedEvent): void {

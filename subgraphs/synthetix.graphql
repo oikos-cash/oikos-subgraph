@@ -39,6 +39,8 @@ type SNXHolder @entity {
   id: ID!
   collateral: BigInt # will be null before multicurrency release
   balanceOf: BigInt
+  timestamp: BigInt!
+  block: BigInt!  
 }
 
 # A historical debt tracker
@@ -58,6 +60,10 @@ type SynthHolder @entity {
   id: ID! # address of the holder + the synth
   synth: String! # the synth's currencyKey
   balanceOf: BigInt!
+  account: Bytes! # address
+  timestamp: BigInt!
+  block: BigInt!
+  source: String! 
 }
 
 # Burned tracks this event from various Synth.sol instances
