@@ -2,7 +2,7 @@
 type RatesUpdated @entity {
   id: ID!
   from: Bytes! # address
-  currencyKeys: [Bytes!]! # bytes4[]
+  currencyKeys: [Bytes!]! # bytes32[]
   newRates: [BigInt!]! # uint256[]
   gasPrice: BigInt!
   block: BigInt!

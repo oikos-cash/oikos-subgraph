@@ -6,29 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Synthetix
-    network: mainnet
+    network: testnet
     source:
-      address: '0xc011a72400e58ecd99ee497cf89e3775d4bd732f' # ProxySynthetix
+      address: '0xb20d4f75ba52e8574dad86fa2b8f8958392bc994' # ProxySynthetix
       abi: Synthetix
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.3
-      language: wasm/assemblyscript
-      file: ./src/exchanges-mapping.ts
-      entities:
-        - SynthExchange
-      abis:
-        - name: Synthetix
-          file: ./abis/Synthetix_bytes4.json # Can assume bytes4 due to event signature below
-      eventHandlers:
-        - event: SynthExchange(indexed address,bytes4,uint256,bytes4,uint256,address)
-          handler: handleSynthExchange4
-  - kind: ethereum/contract
-    name: Synthetix
-    network: mainnet
-    source:
-      address: '0xc011a72400e58ecd99ee497cf89e3775d4bd732f' # ProxySynthetix
-      abi: Synthetix
+      startBlock: 24445000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
@@ -43,32 +25,12 @@ dataSources:
         - event: SynthExchange(indexed address,bytes32,uint256,bytes32,uint256,address)
           handler: handleSynthExchange32
   - kind: ethereum/contract
-    name: SynthXDR4
-    network: mainnet
+    name: SynthODR
+    network: testnet
     source:
-      address: '0x62492F15cF60c5847d3053e482cAde8C5c29af88' # ProxyXDR (pre v2.10)
+      address: '0xc9044153263e1d3e736e226888a589fc23f9f9fd' # ProxyXDR (ERC20) (v2.10)
       abi: Synth
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.3
-      language: wasm/assemblyscript
-      file: ./src/exchanges-mapping.ts
-      entities:
-        - Issued
-      abis:
-        - name: Synth
-          file: ./abis/Synth_bytes4.json
-        - name: Synthetix
-          file: ./abis/Synthetix_bytes4.json
-      eventHandlers:
-        - event: Issued(indexed address,uint256)
-          handler: handleIssuedXDR4
-  - kind: ethereum/contract
-    name: SynthXDR32
-    network: mainnet
-    source:
-      address: '0xb3f67dE9a919476a4c0fE821d67bf5C4637D8429' # ProxyXDR (ERC20) (v2.10)
-      abi: Synth
+      startBlock: 24445000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3

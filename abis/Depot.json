@@ -1,5 +1,19 @@
 [
   {
+    "constant": false,
+    "inputs": [],
+    "name": "exchangeEtherForSNX",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
     "constant": true,
     "inputs": [],
     "name": "minimumDepositAmount",
@@ -11,8 +25,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x080c279a"
+    "type": "function"
   },
   {
     "constant": false,
@@ -31,8 +44,7 @@
     ],
     "payable": true,
     "stateMutability": "payable",
-    "type": "function",
-    "signature": "0x0c928bc2"
+    "type": "function"
   },
   {
     "constant": true,
@@ -51,8 +63,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x0c928f05"
+    "type": "function"
   },
   {
     "constant": true,
@@ -66,8 +77,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x115f4fee"
+    "type": "function"
   },
   {
     "constant": false,
@@ -86,8 +96,7 @@
     ],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x15ef856d"
+    "type": "function"
   },
   {
     "constant": false,
@@ -101,8 +110,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x1627540c"
+    "type": "function"
   },
   {
     "constant": false,
@@ -116,8 +124,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x16c38b3c"
+    "type": "function"
   },
   {
     "constant": true,
@@ -131,8 +138,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x17c70de4"
+    "type": "function"
   },
   {
     "constant": false,
@@ -146,8 +152,7 @@
     ],
     "payable": true,
     "stateMutability": "payable",
-    "type": "function",
-    "signature": "0x1f930115"
+    "type": "function"
   },
   {
     "constant": false,
@@ -161,8 +166,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x20714f88"
+    "type": "function"
   },
   {
     "constant": true,
@@ -176,8 +180,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x2194f3a2"
+    "type": "function"
   },
   {
     "constant": true,
@@ -191,8 +194,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x21cf3514"
+    "type": "function"
   },
   {
     "constant": false,
@@ -206,8 +208,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x29f3533c"
+    "type": "function"
   },
   {
     "constant": false,
@@ -216,8 +217,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x3278c960"
+    "type": "function"
   },
   {
     "constant": false,
@@ -231,8 +231,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x3b2b49b9"
+    "type": "function"
   },
   {
     "constant": true,
@@ -246,8 +245,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x3d160de9"
+    "type": "function"
   },
   {
     "constant": false,
@@ -269,8 +267,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x3ed620a4"
+    "type": "function"
   },
   {
     "constant": true,
@@ -284,8 +281,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x49b9a7af"
+    "type": "function"
   },
   {
     "constant": true,
@@ -299,8 +295,21 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x4d0387fb"
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "snxProxy",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "constant": true,
@@ -314,8 +323,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x53a47bb7"
+    "type": "function"
   },
   {
     "constant": false,
@@ -338,8 +346,7 @@
     ],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x5b7b5b35"
+    "type": "function"
   },
   {
     "constant": true,
@@ -353,8 +360,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x5c975abb"
+    "type": "function"
   },
   {
     "constant": false,
@@ -368,8 +374,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x64e39b87"
+    "type": "function"
   },
   {
     "constant": true,
@@ -383,23 +388,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x6d5ab4a9"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "synthetix",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "signature": "0x759b5225"
+    "type": "function"
   },
   {
     "constant": false,
@@ -408,23 +397,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x79ba5097"
-  },
-  {
-    "constant": false,
-    "inputs": [],
-    "name": "exchangeEtherForSynthetix",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": true,
-    "stateMutability": "payable",
-    "type": "function",
-    "signature": "0x7a2a6526"
+    "type": "function"
   },
   {
     "constant": false,
@@ -438,8 +411,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x7adbf973"
+    "type": "function"
   },
   {
     "constant": false,
@@ -462,8 +434,7 @@
     ],
     "payable": true,
     "stateMutability": "payable",
-    "type": "function",
-    "signature": "0x7d43c206"
+    "type": "function"
   },
   {
     "constant": true,
@@ -477,8 +448,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x7dc0d1d0"
+    "type": "function"
   },
   {
     "constant": false,
@@ -487,8 +457,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x81b797dc"
+    "type": "function"
   },
   {
     "constant": true,
@@ -502,8 +471,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x8da5cb5b"
+    "type": "function"
   },
   {
     "constant": true,
@@ -517,8 +485,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x91b4ded9"
+    "type": "function"
   },
   {
     "constant": false,
@@ -527,8 +494,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x9cb8a26a"
+    "type": "function"
   },
   {
     "constant": true,
@@ -547,8 +513,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xa3d8829b"
+    "type": "function"
   },
   {
     "constant": true,
@@ -562,8 +527,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xa461fc82"
+    "type": "function"
   },
   {
     "constant": false,
@@ -577,8 +541,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xaab483d6"
+    "type": "function"
   },
   {
     "constant": true,
@@ -592,8 +555,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xae2e933b"
+    "type": "function"
   },
   {
     "constant": true,
@@ -616,8 +578,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xb02c43d0"
+    "type": "function"
   },
   {
     "constant": true,
@@ -631,8 +592,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xb8225dec"
+    "type": "function"
   },
   {
     "constant": true,
@@ -646,8 +606,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xba34251b"
+    "type": "function"
   },
   {
     "constant": false,
@@ -656,36 +615,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xbd32aa44"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "from",
-        "type": "address"
-      },
-      {
-        "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "name": "data",
-        "type": "bytes"
-      }
-    ],
-    "name": "tokenFallback",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xc0ee0b8a"
+    "type": "function"
   },
   {
     "constant": true,
@@ -699,8 +629,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xc58aaae6"
+    "type": "function"
   },
   {
     "constant": true,
@@ -719,8 +648,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xc6abb7c7"
+    "type": "function"
   },
   {
     "constant": true,
@@ -739,8 +667,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xc8d889f2"
+    "type": "function"
   },
   {
     "constant": false,
@@ -754,8 +681,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xdc8fa6c2"
+    "type": "function"
   },
   {
     "constant": false,
@@ -769,8 +695,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xe6d76a76"
+    "type": "function"
   },
   {
     "constant": true,
@@ -784,8 +709,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xec1d0687"
+    "type": "function"
   },
   {
     "constant": true,
@@ -799,8 +723,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xf782b3ef"
+    "type": "function"
   },
   {
     "constant": true,
@@ -814,14 +737,13 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xfd12167f"
+    "type": "function"
   },
   {
     "constant": false,
     "inputs": [
       {
-        "name": "_synthetix",
+        "name": "_snxProxy",
         "type": "address"
       }
     ],
@@ -829,8 +751,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xfec9f9da"
+    "type": "function"
   },
   {
     "inputs": [
@@ -843,7 +764,7 @@
         "type": "address"
       },
       {
-        "name": "_synthetix",
+        "name": "_snxProxy",
         "type": "address"
       },
       {
@@ -874,7 +795,8 @@
   {
     "payable": true,
     "stateMutability": "payable",
-    "type": "fallback"
+    "type": "fallback",
+    "name": "fallback"
   },
   {
     "anonymous": false,
@@ -886,8 +808,7 @@
       }
     ],
     "name": "FundsWalletUpdated",
-    "type": "event",
-    "signature": "0x4deb077bf9c4bc824cc2c989e01a5e53b0a4ecc44c5039d46abc9ffc88f8a050"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -899,8 +820,7 @@
       }
     ],
     "name": "OracleUpdated",
-    "type": "event",
-    "signature": "0x3df77beb5db05fcdd70a30fc8adf3f83f9501b68579455adbd100b8180940394"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -912,21 +832,19 @@
       }
     ],
     "name": "SynthUpdated",
-    "type": "event",
-    "signature": "0x765d601a1e833e9d1cda08533c41d3a9e68ea99952d60e479a8e8fa63c390d41"
+    "type": "event"
   },
   {
     "anonymous": false,
     "inputs": [
       {
         "indexed": false,
-        "name": "newSynthetixContract",
+        "name": "newSNXProxy",
         "type": "address"
       }
     ],
     "name": "SynthetixUpdated",
-    "type": "event",
-    "signature": "0x46e9c68bd7831071bdd478f1ae4c4a52463961a9d620383a0a121dbfc0e0f06d"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -938,8 +856,7 @@
       }
     ],
     "name": "PriceStalePeriodUpdated",
-    "type": "event",
-    "signature": "0x456c8075c5b512d696c9a215b96d7146add8797e2050899ad8a97fd4a648ac93"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -961,8 +878,7 @@
       }
     ],
     "name": "PricesUpdated",
-    "type": "event",
-    "signature": "0xa6b830b74e52d7d1140e76252f225dc7bed28782519845600bbd3182341dc115"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -989,8 +905,7 @@
       }
     ],
     "name": "Exchange",
-    "type": "event",
-    "signature": "0xdb1741ffc6844b04a9284bb6337fb0ccfe543a493ef0ac8e725242201e93d4bd"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1007,8 +922,7 @@
       }
     ],
     "name": "SynthWithdrawal",
-    "type": "event",
-    "signature": "0xaf6ec623f558c7b3527ff6c9c09432c7d81a3d38bd2e1eaaee2efe7aac23c28b"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1030,8 +944,7 @@
       }
     ],
     "name": "SynthDeposit",
-    "type": "event",
-    "signature": "0xd9acabe6e09d178728ba5c366661c5be0621b4770f216305b059ec175b37e0b4"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1053,8 +966,7 @@
       }
     ],
     "name": "SynthDepositRemoved",
-    "type": "event",
-    "signature": "0x3aa2b18eace5e5727a4ab525921b9b0a1ca1afdb0f96b599e3ab2d76cb5e7f72"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1076,8 +988,7 @@
       }
     ],
     "name": "SynthDepositNotAccepted",
-    "type": "event",
-    "signature": "0xbc3a12638d840d60760c64b39c73985a6498cf6eb8176f124995b0e07236cbd2"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1089,8 +1000,7 @@
       }
     ],
     "name": "MinimumDepositAmountUpdated",
-    "type": "event",
-    "signature": "0xa39eacd162ee82c70b2b030a1bc8fe89adcccc61122fad4821a8772dbcc54267"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1107,8 +1017,7 @@
       }
     ],
     "name": "NonPayableContract",
-    "type": "event",
-    "signature": "0xf2435d3901399daa085f8b58d2409fff9b83ce4ca97c1f144b532f5a08b1c96c"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1140,8 +1049,7 @@
       }
     ],
     "name": "ClearedDeposit",
-    "type": "event",
-    "signature": "0x6d957e9e816107f67cb7118461e3c259e96896f80223c9af2972596c2fdd401c"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1153,15 +1061,13 @@
       }
     ],
     "name": "PauseChanged",
-    "type": "event",
-    "signature": "0x8fb6c181ee25a520cf3dd6565006ef91229fcfe5a989566c2a3b8c115570cec5"
+    "type": "event"
   },
   {
     "anonymous": false,
     "inputs": [],
     "name": "SelfDestructTerminated",
-    "type": "event",
-    "signature": "0x6adcc7125002935e0aa31697538ebbd65cfddf20431eb6ecdcfc3e238bfd082c"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1173,8 +1079,7 @@
       }
     ],
     "name": "SelfDestructed",
-    "type": "event",
-    "signature": "0x8a09e1677ced846cb537dc2b172043bd05a1a81ad7e0033a7ef8ba762df990b7"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1186,8 +1091,7 @@
       }
     ],
     "name": "SelfDestructInitiated",
-    "type": "event",
-    "signature": "0xcbd94ca75b8dc45c9d80c77e851670e78843c0d75180cb81db3e2158228fa9a6"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1199,8 +1103,7 @@
       }
     ],
     "name": "SelfDestructBeneficiaryUpdated",
-    "type": "event",
-    "signature": "0xd5da63a0b864b315bc04128dedbc93888c8529ee6cf47ce664dc204339228c53"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1212,8 +1115,7 @@
       }
     ],
     "name": "OwnerNominated",
-    "type": "event",
-    "signature": "0x906a1c6bd7e3091ea86693dd029a831c19049ce77f1dce2ce0bab1cacbabce22"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1230,7 +1132,6 @@
       }
     ],
     "name": "OwnerChanged",
-    "type": "event",
-    "signature": "0xb532073b38c83145e3e5135377a08bf9aab55bc0fd7c1179cd4fb995d2a5159c"
+    "type": "event"
   }
 ]

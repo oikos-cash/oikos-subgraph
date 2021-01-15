@@ -13,6 +13,7 @@ export function handleRatesUpdated(event: RatesUpdatedEvent): void {
   entity.save();
 
   // required due to assemblyscript
+  // test
   let keys = entity.currencyKeys;
   let rates = entity.newRates;
   // now save each individual update

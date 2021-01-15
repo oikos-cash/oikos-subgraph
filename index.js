@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const { gray } = require('chalk');
 const program = require('commander');
-const snx = require('synthetix');
+const snx = require('@oikos/oikos');
 
 program.command('prepare-abis').action(async () => {
   const abiPath = path.join(__dirname, 'abis');

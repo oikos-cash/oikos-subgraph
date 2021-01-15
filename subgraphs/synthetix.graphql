@@ -38,7 +38,22 @@ type Issuer @entity {
 type SNXHolder @entity {
   id: ID!
   collateral: BigInt # will be null before multicurrency release
+  balanceOf: BigInt
 }
+
+# A historical debt tracker
+type DebtSnapshot @entity {
+  id: ID!
+  # last block where an event happened
+  block: BigInt!
+  timestamp: BigInt!
+  account: Bytes! # address
+  balanceOf: BigInt # early on it was possible this wouldn't have a value (pre v2)
+  # the following will be null before multicurrency (v2) release
+  collateral: BigInt
+  debtBalanceOf: BigInt
+}
+
 
 # Burned tracks this event from various Synth.sol instances
 type Burned @entity {
@@ -58,4 +73,18 @@ type ProxyTargetUpdated @entity {
   newTarget: Bytes! # address
   block: BigInt!
   tx: Bytes!
+}
+
+type TotalActiveStaker @entity {
+  id: ID!
+  count: BigInt!
+}
+
+type TotalDailyActiveStaker @entity {
+  id: ID!
+  count: BigInt!
+}
+
+type ActiveStaker @entity {
+  id: ID!
 }

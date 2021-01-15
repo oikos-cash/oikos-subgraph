@@ -11,8 +11,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x1627540c"
+    "type": "function"
   },
   {
     "constant": false,
@@ -26,8 +25,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x19db2228"
+    "type": "function"
   },
   {
     "constant": true,
@@ -46,8 +44,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x19e740c0"
+    "type": "function"
   },
   {
     "constant": true,
@@ -66,8 +63,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x204b676a"
+    "type": "function"
   },
   {
     "constant": true,
@@ -86,8 +82,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x227d517a"
+    "type": "function"
   },
   {
     "constant": true,
@@ -106,8 +101,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x2f5bb661"
+    "type": "function"
   },
   {
     "constant": true,
@@ -126,8 +120,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x326a3cfb"
+    "type": "function"
   },
   {
     "constant": true,
@@ -146,8 +139,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x449d0eb1"
+    "type": "function"
   },
   {
     "constant": false,
@@ -156,8 +148,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x458efde3"
+    "type": "function"
   },
   {
     "constant": true,
@@ -184,8 +175,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x45e5441f"
+    "type": "function"
   },
   {
     "constant": true,
@@ -199,8 +189,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x53a47bb7"
+    "type": "function"
   },
   {
     "constant": true,
@@ -219,8 +208,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x6b3905c4"
+    "type": "function"
   },
   {
     "constant": true,
@@ -239,8 +227,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x70a08231"
+    "type": "function"
   },
   {
     "constant": true,
@@ -254,8 +241,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x71e780f3"
+    "type": "function"
   },
   {
     "constant": true,
@@ -269,8 +255,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x759b5225"
+    "type": "function"
   },
   {
     "constant": false,
@@ -279,8 +264,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x79ba5097"
+    "type": "function"
   },
   {
     "constant": true,
@@ -294,8 +278,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x8da5cb5b"
+    "type": "function"
   },
   {
     "constant": true,
@@ -314,8 +297,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x97f46527"
+    "type": "function"
   },
   {
     "constant": true,
@@ -338,8 +320,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x9b217f90"
+    "type": "function"
   },
   {
     "constant": true,
@@ -353,8 +334,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xae2e933b"
+    "type": "function"
   },
   {
     "constant": false,
@@ -372,8 +352,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xb5ddb9c7"
+    "type": "function"
   },
   {
     "constant": true,
@@ -387,8 +366,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xd0cc82e3"
+    "type": "function"
   },
   {
     "constant": true,
@@ -411,8 +389,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xda7bd3e9"
+    "type": "function"
   },
   {
     "constant": true,
@@ -435,8 +412,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0xee1d036c"
+    "type": "function"
   },
   {
     "constant": false,
@@ -450,8 +426,7 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xfec9f9da"
+    "type": "function"
   },
   {
     "inputs": [
@@ -482,8 +457,7 @@
       }
     ],
     "name": "SynthetixUpdated",
-    "type": "event",
-    "signature": "0x46e9c68bd7831071bdd478f1ae4c4a52463961a9d620383a0a121dbfc0e0f06d"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -495,8 +469,7 @@
       }
     ],
     "name": "FeePoolUpdated",
-    "type": "event",
-    "signature": "0x6d1d088acfe4f30d6014f6f693c61c16258f9784a6ed8439b2c59213eecb6295"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -518,8 +491,7 @@
       }
     ],
     "name": "Vested",
-    "type": "event",
-    "signature": "0xfbeff59d2bfda0d79ea8a29f8c57c66d48c7a13eabbdb90908d9115ec41c9dc6"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -541,8 +513,7 @@
       }
     ],
     "name": "VestingEntryCreated",
-    "type": "event",
-    "signature": "0xedd34dc5a5ea12bd847909801d0660781b50e26c7f4cec3c7b308f1ea410635c"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -554,8 +525,7 @@
       }
     ],
     "name": "OwnerNominated",
-    "type": "event",
-    "signature": "0x906a1c6bd7e3091ea86693dd029a831c19049ce77f1dce2ce0bab1cacbabce22"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -572,7 +542,6 @@
       }
     ],
     "name": "OwnerChanged",
-    "type": "event",
-    "signature": "0xb532073b38c83145e3e5135377a08bf9aab55bc0fd7c1179cd4fb995d2a5159c"
+    "type": "event"
   }
 ]

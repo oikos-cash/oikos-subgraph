@@ -16,8 +16,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x449d0eb1"
+    "type": "function"
   },
   {
     "constant": true,
@@ -31,8 +30,7 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x9514c232"
+    "type": "function"
   },
   {
     "inputs": [
