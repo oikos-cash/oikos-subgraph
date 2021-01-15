@@ -3,7 +3,7 @@ import { Synth as SynthXDR32 } from '../generated/SynthODR/Synth';
 
 import { Total, DailyTotal, DailyExchanger, FifteenMinuteExchanger, FifteenMinuteTotal, SynthExchange, Exchanger } from '../generated/schema';
 
-import { BigInt, Address } from '@graphprotocol/graph-ts';
+import { log, BigInt, Address } from '@graphprotocol/graph-ts';
 
 import { exchangesToIgnore } from './exchangesToIgnore';
 
@@ -80,13 +80,14 @@ export function handleSynthExchange(event: SynthExchangeEvent): void {
     return;
   }
 
-  let synthetix = Synthetix.bind(event.address);
-  let toAmount = attemptEffectiveValue(synthetix, event.params.fromCurrencyKey, event.params.fromAmount);
-  let account = event.params.account;
-  let entity = new SynthExchange(event.transaction.hash.toHex() + '-' + event.logIndex.toString());
+  let account = event.transaction.from;
   let fromAmountInUSD = BigInt.fromI32(0);
   let toAmountInUSD = BigInt.fromI32(0);
   let feesInUSD = BigInt.fromI32(0);
+
+ 
+ 
+  let synthetix = Synthetix.bind(event.address);
 
   let effectiveValueTry = synthetix.try_effectiveValue(
     event.params.fromCurrencyKey,
@@ -97,22 +98,37 @@ export function handleSynthExchange(event: SynthExchangeEvent): void {
     fromAmountInUSD = effectiveValueTry.value;
     toAmountInUSD = synthetix.effectiveValue(event.params.toCurrencyKey, event.params.toAmount, sUSD32);
   }
-  feesInUSD = fromAmountInUSD.minus(toAmountInUSD);
+  log.debug('Got fromAmountInUSD: {}, toAmountInUSD: {}', [
+    fromAmountInUSD.toString(),
+    toAmountInUSD.toString(),
+  ]);
+  
+  if (fromAmountInUSD > toAmountInUSD) {
+    feesInUSD = fromAmountInUSD.minus(toAmountInUSD);
+  } else {
+    feesInUSD = toAmountInUSD.minus(fromAmountInUSD);
+  }
+  
 
+  let entity = new SynthExchange(event.transaction.hash.toHex() + '-' + event.logIndex.toString());
   entity.account = event.params.account;
-  entity.from = event.transaction.from;
+  entity.from = account;
   entity.fromCurrencyKey = event.params.fromCurrencyKey;
   entity.fromAmount = event.params.fromAmount;
+  entity.fromAmountInUSD = fromAmountInUSD;
   entity.toCurrencyKey = event.params.toCurrencyKey;
   entity.toAmount = event.params.toAmount;
+  entity.toAmountInUSD = toAmountInUSD;
   entity.toAddress = event.params.toAddress;
+  entity.feesInUSD = feesInUSD;
   entity.timestamp = event.block.timestamp;
   entity.block = event.block.number;
   entity.gasPrice = event.transaction.gasPrice;
-  entity.amountInUSD = toAmount; // attemptEffectiveValue() can return null but this value can not be
+  entity.network = '1';
   entity.save();
 
   let timestamp = event.block.timestamp.toI32();
+
   let dayID = timestamp / 86400;
   let fifteenMinuteID = timestamp / 900;
 
@@ -124,6 +140,8 @@ export function handleSynthExchange(event: SynthExchangeEvent): void {
     total = loadTotal();
   }
 
+ 
+
   if (dailyTotal == null) {
     dailyTotal = loadDailyTotal(dayID.toString());
   }
@@ -131,7 +149,7 @@ export function handleSynthExchange(event: SynthExchangeEvent): void {
   if (fifteenMinuteTotal == null) {
     fifteenMinuteTotal = loadFifteenMinuteTotal(fifteenMinuteID.toString());
   }
-
+ 
   let existingExchanger = Exchanger.load(account.toHex());
   let existingDailyExchanger = DailyExchanger.load(dayID.toString() + '-' + account.toHex());
   let existingFifteenMinuteExchanger = FifteenMinuteExchanger.load(fifteenMinuteID.toString() + '-' + account.toHex());
@@ -141,7 +159,6 @@ export function handleSynthExchange(event: SynthExchangeEvent): void {
     let exchanger = new Exchanger(account.toHex());
     exchanger.save();
   }
-
  
 
   if (existingDailyExchanger == null) {
@@ -155,13 +172,15 @@ export function handleSynthExchange(event: SynthExchangeEvent): void {
     let fifteenMinuteExchanger = new FifteenMinuteExchanger(fifteenMinuteID.toString() + '-' + account.toHex());
     fifteenMinuteExchanger.save();
   }
+
  
+
   total.trades = total.trades.plus(BigInt.fromI32(1));
   dailyTotal.trades = dailyTotal.trades.plus(BigInt.fromI32(1));
   fifteenMinuteTotal.trades = fifteenMinuteTotal.trades.plus(BigInt.fromI32(1));
- 
-  if (fromAmountInUSD != null && feesInUSD != null) {
 
+  if (fromAmountInUSD != null && feesInUSD != null) {
+ 
     total = addTotalFeesAndVolume(total as Total, fromAmountInUSD, feesInUSD);
     dailyTotal = addDailyTotalFeesAndVolume(dailyTotal as DailyTotal, fromAmountInUSD, feesInUSD);
     fifteenMinuteTotal = addFifteenMinuteTotalFeesAndVolume(
@@ -170,21 +189,12 @@ export function handleSynthExchange(event: SynthExchangeEvent): void {
       feesInUSD,
     );
   }
-
+ 
   total.save();
   dailyTotal.save();
   fifteenMinuteTotal.save();
-
-
-  trackExchanger(event.transaction.from);
-
-  if (toAmount != null) {
-    // now save the tally of USD value of all exchanges
-    let metadata = getMetadata();
-    metadata.exchangeUSDTally = metadata.exchangeUSDTally.plus(toAmount);
-    metadata.save();
-  }
 }
+
 
 
 // Issuing of XDR is our fee mechanism
