@@ -18,3 +18,25 @@ type RateUpdate @entity {
   block: BigInt!
   timestamp: BigInt!
 }
+
+# The average price of SNX over a 15 minute period
+type FifteenMinuteSNXPrice @entity {
+  id: ID!
+  count: BigInt!
+  averagePrice: BigInt!
+}
+
+# The average price of SNX over a day
+type DailySNXPrice @entity {
+  id: ID!
+  count: BigInt!
+  averagePrice: BigInt!
+}
+
+type LatestRate @entity {
+  " Name of synth. E.g. sUSD "
+  id: ID!
+
+  " Synth USD rate with 18 decimals "
+  rate: BigInt!
+}

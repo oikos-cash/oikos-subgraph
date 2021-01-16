@@ -34,13 +34,22 @@ type Issuer @entity {
   collateralisationRatio: BigInt # will be null before multicurrency release
 }
 
-# An individual SNX holder
+# An individual SNX holder (always overridden with their latest information)
 type SNXHolder @entity {
-  id: ID!
-  collateral: BigInt # will be null before multicurrency release
-  balanceOf: BigInt
+  id: ID! # address of potential holder
+  # last block where an event happened
+  block: BigInt!
   timestamp: BigInt!
-  block: BigInt!  
+  balanceOf: BigInt
+  # the following will be null before multicurrency (v2) release
+  collateral: BigInt
+  transferable: BigInt
+  initialDebtOwnership: BigInt
+  debtEntryAtIndex: BigInt
+  # number of claims performed
+  claims: BigInt
+  # number of mints performed
+  mints: BigInt
 }
 
 # A historical debt tracker

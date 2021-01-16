@@ -1,6 +1,7 @@
 import { Synthetix as SNX, Transfer as TransferEvent } from '../generated/Synthetix/Synthetix';
 import { TargetUpdated as TargetUpdatedEvent } from '../generated/ProxySynthetix/Proxy';
 import { sUSD32 } from './common';
+import { SynthetixState } from '../generated/Synthetix/SynthetixState';
 
 import {
   Synth,
@@ -84,6 +85,7 @@ function trackSNXHolder(snxContract: Address, account: Address, timestamp:BigInt
   let snxHolder = new SNXHolder(account.toHex());
   let synthetix = SNX.bind(snxContract);
   snxHolder.balanceOf = synthetix.balanceOf(account);
+  snxHolder.transferable = synthetix.transferableSynthetix(account);
   snxHolder.block = block;
   snxHolder.timestamp = timestamp;
   let synthetixCollateralTry = synthetix.try_collateral(account);
@@ -91,6 +93,17 @@ function trackSNXHolder(snxContract: Address, account: Address, timestamp:BigInt
     snxHolder.collateral = synthetixCollateralTry.value;
   }
 
+  let stateTry = synthetix.try_synthetixState();
+  if (!stateTry.reverted) {
+    let synthetixStateContract = synthetix.synthetixState();
+    let synthetixState = SynthetixState.bind(synthetixStateContract);
+    let issuanceData = synthetixState.issuanceData(account); 
+    snxHolder.initialDebtOwnership = issuanceData.value0;
+    let debtLedgerTry = synthetixState.try_debtLedger(issuanceData.value1);
+    if (!debtLedgerTry.reverted) {
+      snxHolder.debtEntryAtIndex = debtLedgerTry.value;
+    }
+  }
   if (
     (existingSNXHolder == null && snxHolder.balanceOf > BigInt.fromI32(0)) ||
     (existingSNXHolder != null &&
@@ -214,7 +227,12 @@ function trackDebtSnapshot(event: BurnedEvent): void {
 
  
   let synthetix = SNX.bind(snxContract);
-  entity.balanceOf = synthetix.balanceOf(account);
+  let balanceOfTry = synthetix.try_balanceOf(account);
+  if (!balanceOfTry.reverted) {
+    entity.balanceOf = balanceOfTry.value;
+  }
+
+  //entity.balanceOf = synthetix.balanceOf(account);
   entity.collateral = synthetix.collateral(account);
   //entity.debtBalanceOf = synthetix.debtBalanceOf(account, sUSD32);
   let debtBalanceOfTry = synthetix.try_debtBalanceOf(account, sUSD32);
