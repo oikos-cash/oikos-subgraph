@@ -85,7 +85,11 @@ function trackSNXHolder(snxContract: Address, account: Address, timestamp:BigInt
   let snxHolder = new SNXHolder(account.toHex());
   let synthetix = SNX.bind(snxContract);
   snxHolder.balanceOf = synthetix.balanceOf(account);
-  snxHolder.transferable = synthetix.transferableSynthetix(account);
+
+  let transferableSynthetixTry = synthetix.try_transferableSynthetix(account);
+  if (!transferableSynthetixTry.reverted) {
+    snxHolder.transferable = transferableSynthetixTry.value;
+  }  
   snxHolder.block = block;
   snxHolder.timestamp = timestamp;
   let synthetixCollateralTry = synthetix.try_collateral(account);
@@ -232,8 +236,11 @@ function trackDebtSnapshot(event: BurnedEvent): void {
     entity.balanceOf = balanceOfTry.value;
   }
 
-  //entity.balanceOf = synthetix.balanceOf(account);
-  entity.collateral = synthetix.collateral(account);
+  let collateralTry = synthetix.try_collateral(account);
+  if (!collateralTry.reverted) {
+    entity.collateral = collateralTry.value;
+  }
+ 
   //entity.debtBalanceOf = synthetix.debtBalanceOf(account, sUSD32);
   let debtBalanceOfTry = synthetix.try_debtBalanceOf(account, sUSD32);
   if (!debtBalanceOfTry.reverted) {
