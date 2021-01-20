@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0xb20d4f75ba52e8574dad86fa2b8f8958392bc994' # ProxySynthetix
       abi: Synthetix
-      startBlock: 24445000
+      startBlock: 19300011
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
@@ -30,7 +30,7 @@ dataSources:
     source:
       address: '0xc9044153263e1d3e736e226888a589fc23f9f9fd' # ProxyXDR (ERC20) (v2.10)
       abi: Synth
-      startBlock: 24445000
+      startBlock: 19300011
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
