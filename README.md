@@ -1,10 +1,10 @@
-# Synthetix Subgraph
+# Oikos Subgraph
 
-[![CircleCI](https://circleci.com/gh/Synthetixio/synthetix-subgraph.svg?style=svg)](https://circleci.com/gh/Synthetixio/synthetix-subgraph)
+[![CircleCI](https://circleci.com/gh/Oikosio/oikos-subgraph.svg?style=svg)](https://circleci.com/gh/Oikosio/oikos-subgraph)
 
-Here is the code for Synthetix's current subgraph: https://thegraph.com/explorer/subgraph/synthetixio-team/synthetix
+Here is the code for Oikos's current subgraph: https://thegraph.com/explorer/subgraph/oikosio-team/oikos
 
-The Graph exposes a GraphQL endpoint to query the events and entities within the Synthetix system.
+The Graph exposes a GraphQL endpoint to query the events and entities within the Oikos system.
 
 For example:
 

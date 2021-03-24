@@ -1,17 +1,18 @@
 [
   {
-    "constant": false,
+    "constant": true,
     "inputs": [],
-    "name": "exchangeEtherForSNX",
+    "name": "resolver",
     "outputs": [
       {
         "name": "",
-        "type": "uint256"
+        "type": "address"
       }
     ],
-    "payable": true,
-    "stateMutability": "payable",
-    "type": "function"
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x04f3bcec"
   },
   {
     "constant": true,
@@ -25,7 +26,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x080c279a"
   },
   {
     "constant": false,
@@ -44,7 +46,8 @@
     ],
     "payable": true,
     "stateMutability": "payable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x0c928bc2"
   },
   {
     "constant": true,
@@ -63,40 +66,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "synth",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "synthAmount",
-        "type": "uint256"
-      }
-    ],
-    "name": "exchangeSynthsForSynthetix",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x0c928f05"
   },
   {
     "constant": false,
@@ -110,7 +81,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x1627540c"
   },
   {
     "constant": false,
@@ -124,7 +96,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x16c38b3c"
   },
   {
     "constant": true,
@@ -138,7 +111,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x17c70de4"
   },
   {
     "constant": false,
@@ -152,7 +126,8 @@
     ],
     "payable": true,
     "stateMutability": "payable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x1f930115"
   },
   {
     "constant": false,
@@ -166,7 +141,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x20714f88"
   },
   {
     "constant": true,
@@ -180,12 +156,18 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x2194f3a2"
   },
   {
     "constant": true,
-    "inputs": [],
-    "name": "priceStalePeriod",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "oikosReceivedForSynths",
     "outputs": [
       {
         "name": "",
@@ -194,21 +176,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_time",
-        "type": "uint256"
-      }
-    ],
-    "name": "setPriceStalePeriod",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x2b02104a"
   },
   {
     "constant": false,
@@ -217,71 +186,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_synth",
-        "type": "address"
-      }
-    ],
-    "name": "setSynth",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "pricesAreStale",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "newEthPrice",
-        "type": "uint256"
-      },
-      {
-        "name": "newSynthetixPrice",
-        "type": "uint256"
-      },
-      {
-        "name": "timeSent",
-        "type": "uint256"
-      }
-    ],
-    "name": "updatePrices",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "lastPriceUpdateTime",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x3278c960"
   },
   {
     "constant": true,
@@ -295,21 +201,43 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x4d0387fb"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "snxProxy",
-    "outputs": [
+    "constant": false,
+    "inputs": [
       {
-        "name": "",
+        "name": "_resolver",
         "type": "address"
       }
     ],
+    "name": "setResolver",
+    "outputs": [],
     "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x4e543b26"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "synthAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "exchangeSynthsForOKS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x5118fdbd"
   },
   {
     "constant": true,
@@ -323,30 +251,23 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x53a47bb7"
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "synthAmount",
-        "type": "uint256"
-      },
-      {
-        "name": "guaranteedRate",
-        "type": "uint256"
-      }
-    ],
-    "name": "exchangeSynthsForSynthetixAtRate",
+    "inputs": [],
+    "name": "exchangeEtherForOKS",
     "outputs": [
       {
         "name": "",
         "type": "uint256"
       }
     ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function",
+    "signature": "0x57ecb3ae"
   },
   {
     "constant": true,
@@ -360,7 +281,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x5c975abb"
   },
   {
     "constant": false,
@@ -374,7 +296,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x64e39b87"
   },
   {
     "constant": true,
@@ -388,7 +311,32 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x6d5ab4a9"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "synthAmount",
+        "type": "uint256"
+      },
+      {
+        "name": "guaranteedRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "exchangeSynthsForOKSAtRate",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x76c27f8b"
   },
   {
     "constant": false,
@@ -397,58 +345,23 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x79ba5097"
   },
   {
     "constant": false,
     "inputs": [
       {
-        "name": "_oracle",
-        "type": "address"
+        "name": "amount",
+        "type": "uint256"
       }
     ],
-    "name": "setOracle",
+    "name": "withdrawOikos",
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "guaranteedEtherRate",
-        "type": "uint256"
-      },
-      {
-        "name": "guaranteedSynthetixRate",
-        "type": "uint256"
-      }
-    ],
-    "name": "exchangeEtherForSynthetixAtRate",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": true,
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "oracle",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x7abad8e3"
   },
   {
     "constant": false,
@@ -457,7 +370,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x81b797dc"
   },
   {
     "constant": true,
@@ -471,7 +385,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x8da5cb5b"
   },
   {
     "constant": true,
@@ -485,7 +400,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x91b4ded9"
   },
   {
     "constant": false,
@@ -494,26 +410,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "synthetixReceivedForSynths",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x9cb8a26a"
   },
   {
     "constant": true,
@@ -527,7 +425,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xa461fc82"
   },
   {
     "constant": false,
@@ -541,21 +440,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "feePool",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xaab483d6"
   },
   {
     "constant": true,
@@ -578,7 +464,23 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xb02c43d0"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "maxEthPurchase",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0xb1338cc4"
   },
   {
     "constant": true,
@@ -592,21 +494,23 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xb8225dec"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "usdToEthPrice",
-    "outputs": [
+    "constant": false,
+    "inputs": [
       {
-        "name": "",
+        "name": "_maxEthPurchase",
         "type": "uint256"
       }
     ],
+    "name": "setMaxEthPurchase",
+    "outputs": [],
     "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0xbb7df172"
   },
   {
     "constant": false,
@@ -615,7 +519,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0xbd32aa44"
   },
   {
     "constant": true,
@@ -629,7 +534,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xc58aaae6"
   },
   {
     "constant": true,
@@ -648,7 +554,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xc6abb7c7"
   },
   {
     "constant": true,
@@ -658,7 +565,7 @@
         "type": "uint256"
       }
     ],
-    "name": "synthetixReceivedForEther",
+    "name": "oikosReceivedForEther",
     "outputs": [
       {
         "name": "",
@@ -667,7 +574,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xc6f99c0b"
   },
   {
     "constant": false,
@@ -681,49 +589,32 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0xdc8fa6c2"
   },
   {
     "constant": false,
     "inputs": [
       {
-        "name": "amount",
+        "name": "guaranteedEtherRate",
+        "type": "uint256"
+      },
+      {
+        "name": "guaranteedOikosRate",
         "type": "uint256"
       }
     ],
-    "name": "withdrawSynthetix",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "usdToSnxPrice",
+    "name": "exchangeEtherForOKSAtRate",
     "outputs": [
       {
         "name": "",
         "type": "uint256"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "ORACLE_FUTURE_LIMIT",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function",
+    "signature": "0xe77e9a50"
   },
   {
     "constant": true,
@@ -737,21 +628,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_snxProxy",
-        "type": "address"
-      }
-    ],
-    "name": "setSynthetix",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0xfd12167f"
   },
   {
     "inputs": [
@@ -764,39 +642,32 @@
         "type": "address"
       },
       {
-        "name": "_snxProxy",
+        "name": "_resolver",
         "type": "address"
-      },
-      {
-        "name": "_synth",
-        "type": "address"
-      },
-      {
-        "name": "_feePool",
-        "type": "address"
-      },
-      {
-        "name": "_oracle",
-        "type": "address"
-      },
-      {
-        "name": "_usdToEthPrice",
-        "type": "uint256"
-      },
-      {
-        "name": "_usdToSnxPrice",
-        "type": "uint256"
       }
     ],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "constructor"
+    "type": "constructor",
+    "signature": "constructor"
   },
   {
     "payable": true,
     "stateMutability": "payable",
-    "type": "fallback",
-    "name": "fallback"
+    "type": "fallback"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "MaxEthPurchaseUpdated",
+    "type": "event",
+    "signature": "0xdc2be810a133e01cb21a41082f15b2863d96f9fe79d1f84d7e2d5b810c5c8243"
   },
   {
     "anonymous": false,
@@ -808,77 +679,8 @@
       }
     ],
     "name": "FundsWalletUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "newOracle",
-        "type": "address"
-      }
-    ],
-    "name": "OracleUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "newSynthContract",
-        "type": "address"
-      }
-    ],
-    "name": "SynthUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "newSNXProxy",
-        "type": "address"
-      }
-    ],
-    "name": "SynthetixUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "priceStalePeriod",
-        "type": "uint256"
-      }
-    ],
-    "name": "PriceStalePeriodUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "newEthPrice",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "newSynthetixPrice",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "timeSent",
-        "type": "uint256"
-      }
-    ],
-    "name": "PricesUpdated",
-    "type": "event"
+    "type": "event",
+    "signature": "0x4deb077bf9c4bc824cc2c989e01a5e53b0a4ecc44c5039d46abc9ffc88f8a050"
   },
   {
     "anonymous": false,
@@ -905,7 +707,8 @@
       }
     ],
     "name": "Exchange",
-    "type": "event"
+    "type": "event",
+    "signature": "0xdb1741ffc6844b04a9284bb6337fb0ccfe543a493ef0ac8e725242201e93d4bd"
   },
   {
     "anonymous": false,
@@ -922,7 +725,8 @@
       }
     ],
     "name": "SynthWithdrawal",
-    "type": "event"
+    "type": "event",
+    "signature": "0xaf6ec623f558c7b3527ff6c9c09432c7d81a3d38bd2e1eaaee2efe7aac23c28b"
   },
   {
     "anonymous": false,
@@ -944,7 +748,8 @@
       }
     ],
     "name": "SynthDeposit",
-    "type": "event"
+    "type": "event",
+    "signature": "0xd9acabe6e09d178728ba5c366661c5be0621b4770f216305b059ec175b37e0b4"
   },
   {
     "anonymous": false,
@@ -966,7 +771,8 @@
       }
     ],
     "name": "SynthDepositRemoved",
-    "type": "event"
+    "type": "event",
+    "signature": "0x3aa2b18eace5e5727a4ab525921b9b0a1ca1afdb0f96b599e3ab2d76cb5e7f72"
   },
   {
     "anonymous": false,
@@ -988,7 +794,8 @@
       }
     ],
     "name": "SynthDepositNotAccepted",
-    "type": "event"
+    "type": "event",
+    "signature": "0xbc3a12638d840d60760c64b39c73985a6498cf6eb8176f124995b0e07236cbd2"
   },
   {
     "anonymous": false,
@@ -1000,7 +807,8 @@
       }
     ],
     "name": "MinimumDepositAmountUpdated",
-    "type": "event"
+    "type": "event",
+    "signature": "0xa39eacd162ee82c70b2b030a1bc8fe89adcccc61122fad4821a8772dbcc54267"
   },
   {
     "anonymous": false,
@@ -1017,7 +825,8 @@
       }
     ],
     "name": "NonPayableContract",
-    "type": "event"
+    "type": "event",
+    "signature": "0xf2435d3901399daa085f8b58d2409fff9b83ce4ca97c1f144b532f5a08b1c96c"
   },
   {
     "anonymous": false,
@@ -1049,7 +858,8 @@
       }
     ],
     "name": "ClearedDeposit",
-    "type": "event"
+    "type": "event",
+    "signature": "0x6d957e9e816107f67cb7118461e3c259e96896f80223c9af2972596c2fdd401c"
   },
   {
     "anonymous": false,
@@ -1061,13 +871,15 @@
       }
     ],
     "name": "PauseChanged",
-    "type": "event"
+    "type": "event",
+    "signature": "0x8fb6c181ee25a520cf3dd6565006ef91229fcfe5a989566c2a3b8c115570cec5"
   },
   {
     "anonymous": false,
     "inputs": [],
     "name": "SelfDestructTerminated",
-    "type": "event"
+    "type": "event",
+    "signature": "0x6adcc7125002935e0aa31697538ebbd65cfddf20431eb6ecdcfc3e238bfd082c"
   },
   {
     "anonymous": false,
@@ -1079,7 +891,8 @@
       }
     ],
     "name": "SelfDestructed",
-    "type": "event"
+    "type": "event",
+    "signature": "0x8a09e1677ced846cb537dc2b172043bd05a1a81ad7e0033a7ef8ba762df990b7"
   },
   {
     "anonymous": false,
@@ -1091,7 +904,8 @@
       }
     ],
     "name": "SelfDestructInitiated",
-    "type": "event"
+    "type": "event",
+    "signature": "0xcbd94ca75b8dc45c9d80c77e851670e78843c0d75180cb81db3e2158228fa9a6"
   },
   {
     "anonymous": false,
@@ -1103,7 +917,8 @@
       }
     ],
     "name": "SelfDestructBeneficiaryUpdated",
-    "type": "event"
+    "type": "event",
+    "signature": "0xd5da63a0b864b315bc04128dedbc93888c8529ee6cf47ce664dc204339228c53"
   },
   {
     "anonymous": false,
@@ -1115,7 +930,8 @@
       }
     ],
     "name": "OwnerNominated",
-    "type": "event"
+    "type": "event",
+    "signature": "0x906a1c6bd7e3091ea86693dd029a831c19049ce77f1dce2ce0bab1cacbabce22"
   },
   {
     "anonymous": false,
@@ -1132,6 +948,7 @@
       }
     ],
     "name": "OwnerChanged",
-    "type": "event"
+    "type": "event",
+    "signature": "0xb532073b38c83145e3e5135377a08bf9aab55bc0fd7c1179cd4fb995d2a5159c"
   }
 ]

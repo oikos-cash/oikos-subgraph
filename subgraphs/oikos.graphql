@@ -1,11 +1,11 @@
 # Synthentix is an aggregation entity
-type Synthetix @entity {
+type Oikos @entity {
   id: ID!
   issuers: BigInt!
   snxHolders: BigInt!
 }
 
-# Transfer tracks this event from the Synthetix.sol contract and various Synth.sol contracts
+# Transfer tracks this event from the Oikos.sol contract and various Synth.sol contracts
 type Transfer @entity {
   id: ID!
   from: Bytes! # address
@@ -86,7 +86,7 @@ type Burned @entity {
   block: BigInt!
 }
 
-# ProxyTargetUpdated tracks this event from Synthetix.sol
+# ProxyTargetUpdated tracks this event from Oikos.sol
 type ProxyTargetUpdated @entity {
   id: ID!
   source: String!

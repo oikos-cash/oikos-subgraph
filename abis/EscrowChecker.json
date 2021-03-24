@@ -16,12 +16,13 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x449d0eb1"
   },
   {
     "constant": true,
     "inputs": [],
-    "name": "synthetix_escrow",
+    "name": "oikos_escrow",
     "outputs": [
       {
         "name": "",
@@ -30,7 +31,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x8c7a47bc"
   },
   {
     "inputs": [

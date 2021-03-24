@@ -11,7 +11,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x1627540c"
   },
   {
     "constant": true,
@@ -25,7 +26,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x1de40e49"
   },
   {
     "constant": true,
@@ -39,7 +41,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x22af2bab"
   },
   {
     "constant": true,
@@ -53,7 +56,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x251330f1"
   },
   {
     "constant": true,
@@ -67,7 +71,23 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x25542064"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_oikosProxy",
+        "type": "address"
+      }
+    ],
+    "name": "setOikosProxy",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x2d122dc6"
   },
   {
     "constant": true,
@@ -81,7 +101,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x46872a23"
   },
   {
     "constant": true,
@@ -95,7 +116,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x46b45af7"
   },
   {
     "constant": false,
@@ -109,7 +131,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x4ae26521"
   },
   {
     "constant": true,
@@ -128,7 +151,8 @@
     ],
     "payable": false,
     "stateMutability": "pure",
-    "type": "function"
+    "type": "function",
+    "signature": "0x4e070f50"
   },
   {
     "constant": true,
@@ -142,7 +166,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x53a47bb7"
   },
   {
     "constant": false,
@@ -151,7 +176,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x79ba5097"
   },
   {
     "constant": true,
@@ -165,7 +191,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x7c060557"
   },
   {
     "constant": true,
@@ -179,7 +206,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x7e1b823f"
   },
   {
     "constant": false,
@@ -198,7 +226,8 @@
     ],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x7e7961d7"
   },
   {
     "constant": true,
@@ -212,21 +241,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_synthetixProxy",
-        "type": "address"
-      }
-    ],
-    "name": "setSynthetixProxy",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x8da5cb5b"
   },
   {
     "constant": true,
@@ -240,7 +256,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x9bdd7ac7"
   },
   {
     "constant": true,
@@ -263,7 +280,8 @@
     ],
     "payable": false,
     "stateMutability": "pure",
-    "type": "function"
+    "type": "function",
+    "signature": "0xb3b2bcc0"
   },
   {
     "constant": true,
@@ -277,21 +295,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "synthetixProxy",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xbadef30a"
   },
   {
     "constant": true,
@@ -305,7 +310,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xbe801f01"
   },
   {
     "constant": true,
@@ -319,7 +325,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xcc5c095c"
   },
   {
     "constant": true,
@@ -333,7 +340,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xd3bd4bde"
   },
   {
     "constant": true,
@@ -347,7 +355,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xdbd3a6a7"
   },
   {
     "constant": true,
@@ -361,7 +370,23 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xdf5a9fc1"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "oikosProxy",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0xebd50faa"
   },
   {
     "inputs": [
@@ -407,7 +432,8 @@
       }
     ],
     "name": "SupplyMinted",
-    "type": "event"
+    "type": "event",
+    "signature": "0x601e517d4811033fed8290c79b7823ce1ab70258da45400fe2391a3c7432edab"
   },
   {
     "anonymous": false,
@@ -419,7 +445,8 @@
       }
     ],
     "name": "MinterRewardUpdated",
-    "type": "event"
+    "type": "event",
+    "signature": "0x036e0c635f8b7d9314bb6f2a577046108ef0f8b5e3869fbd29fd5a448ed99d30"
   },
   {
     "anonymous": false,
@@ -430,8 +457,9 @@
         "type": "address"
       }
     ],
-    "name": "SynthetixProxyUpdated",
-    "type": "event"
+    "name": "OikosProxyUpdated",
+    "type": "event",
+    "signature": "0xb3f04140ca6cfdbdb1278a4f6a248ddacb81a1006675931f2d9735a5468213b2"
   },
   {
     "anonymous": false,
@@ -443,7 +471,8 @@
       }
     ],
     "name": "OwnerNominated",
-    "type": "event"
+    "type": "event",
+    "signature": "0x906a1c6bd7e3091ea86693dd029a831c19049ce77f1dce2ce0bab1cacbabce22"
   },
   {
     "anonymous": false,
@@ -460,6 +489,7 @@
       }
     ],
     "name": "OwnerChanged",
-    "type": "event"
+    "type": "event",
+    "signature": "0xb532073b38c83145e3e5135377a08bf9aab55bc0fd7c1179cd4fb995d2a5159c"
   }
 ]

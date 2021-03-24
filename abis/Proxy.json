@@ -11,7 +11,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x1627540c"
   },
   {
     "constant": true,
@@ -25,7 +26,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x53a47bb7"
   },
   {
     "constant": false,
@@ -39,7 +41,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x776d1a01"
   },
   {
     "constant": false,
@@ -48,7 +51,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x79ba5097"
   },
   {
     "constant": true,
@@ -62,7 +66,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x8da5cb5b"
   },
   {
     "constant": false,
@@ -96,7 +101,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x907dff97"
   },
   {
     "constant": true,
@@ -110,7 +116,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x95578ebd"
   },
   {
     "constant": false,
@@ -124,7 +131,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0xbefff6af"
   },
   {
     "constant": true,
@@ -138,7 +146,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xd4b83992"
   },
   {
     "inputs": [
@@ -154,8 +163,7 @@
   {
     "payable": true,
     "stateMutability": "payable",
-    "type": "fallback",
-    "name": "fallback"
+    "type": "fallback"
   },
   {
     "anonymous": false,
@@ -167,44 +175,8 @@
       }
     ],
     "name": "TargetUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "account",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "fromCurrencyKey",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "name": "fromAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "toCurrencyKey",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "name": "toAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "toAddress",
-        "type": "address"
-      }
-    ],
-    "name": "SynthExchange",
-    "type": "event"
+    "type": "event",
+    "signature": "0x814250a3b8c79fcbe2ead2c131c952a278491c8f4322a79fe84b5040a810373e"
   },
   {
     "anonymous": false,
@@ -216,7 +188,8 @@
       }
     ],
     "name": "OwnerNominated",
-    "type": "event"
+    "type": "event",
+    "signature": "0x906a1c6bd7e3091ea86693dd029a831c19049ce77f1dce2ce0bab1cacbabce22"
   },
   {
     "anonymous": false,
@@ -233,6 +206,7 @@
       }
     ],
     "name": "OwnerChanged",
-    "type": "event"
+    "type": "event",
+    "signature": "0xb532073b38c83145e3e5135377a08bf9aab55bc0fd7c1179cd4fb995d2a5159c"
   }
 ]

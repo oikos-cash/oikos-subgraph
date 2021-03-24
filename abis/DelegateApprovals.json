@@ -11,7 +11,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x1627540c"
   },
   {
     "constant": false,
@@ -25,7 +26,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x52f445ca"
   },
   {
     "constant": true,
@@ -39,7 +41,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x53a47bb7"
   },
   {
     "constant": false,
@@ -57,7 +60,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x5f0736a1"
   },
   {
     "constant": false,
@@ -66,7 +70,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x79ba5097"
   },
   {
     "constant": true,
@@ -80,7 +85,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x8da5cb5b"
   },
   {
     "constant": true,
@@ -94,7 +100,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xaefc4ccb"
   },
   {
     "constant": false,
@@ -112,7 +119,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0xb3c12354"
   },
   {
     "constant": true,
@@ -135,7 +143,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xe1270b6e"
   },
   {
     "inputs": [
@@ -167,7 +176,8 @@
       }
     ],
     "name": "Approval",
-    "type": "event"
+    "type": "event",
+    "signature": "0xf37f546c25e850257cc0c94f92bec94a17e2f0e884ddda268a25d8144b70eb6a"
   },
   {
     "anonymous": false,
@@ -184,7 +194,8 @@
       }
     ],
     "name": "WithdrawApproval",
-    "type": "event"
+    "type": "event",
+    "signature": "0x16097899efec09cc50ee9db7218e30a5d8d6d2b2549c23e79568bf4a1a8c6f74"
   },
   {
     "anonymous": false,
@@ -196,7 +207,8 @@
       }
     ],
     "name": "AssociatedContractUpdated",
-    "type": "event"
+    "type": "event",
+    "signature": "0x73f20cff579e8a4086fa607db83867595f1b6a798e718c0bfa0b94a404128e03"
   },
   {
     "anonymous": false,
@@ -208,7 +220,8 @@
       }
     ],
     "name": "OwnerNominated",
-    "type": "event"
+    "type": "event",
+    "signature": "0x906a1c6bd7e3091ea86693dd029a831c19049ce77f1dce2ce0bab1cacbabce22"
   },
   {
     "anonymous": false,
@@ -225,6 +238,7 @@
       }
     ],
     "name": "OwnerChanged",
-    "type": "event"
+    "type": "event",
+    "signature": "0xb532073b38c83145e3e5135377a08bf9aab55bc0fd7c1179cd4fb995d2a5159c"
   }
 ]

@@ -1,15 +1,15 @@
 specVersion: 0.0.2
-description: Synthetix API
-repository: https://github.com/Synthetixio/synthetix-subgraph
+description: Oikos API
+repository: https://github.com/Oikosio/oikos-subgraph
 schema:
-  file: ./subgraphs/synthetix-exchanges.graphql
+  file: ./subgraphs/oikos-exchanges.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Synthetix
+    name: Oikos
     network: testnet
     source:
-      address: '0xb20d4f75ba52e8574dad86fa2b8f8958392bc994' # ProxySynthetix
-      abi: Synthetix
+      address: '0xb20d4f75ba52e8574dad86fa2b8f8958392bc994' # ProxyOikos
+      abi: Oikos
       startBlock: 19300011
     mapping:
       kind: ethereum/events
@@ -19,8 +19,8 @@ dataSources:
       entities:
         - SynthExchange
       abis:
-        - name: Synthetix
-          file: ./abis/Synthetix.json # Can assume bytes32 due to event signature below
+        - name: Oikos
+          file: ./abis/Oikos.json # Can assume bytes32 due to event signature below
       eventHandlers:
         - event: SynthExchange(indexed address,bytes32,uint256,bytes32,uint256,address)
           handler: handleSynthExchange
@@ -41,8 +41,8 @@ dataSources:
       abis:
         - name: Synth
           file: ./abis/Synth.json
-        - name: Synthetix
-          file: ./abis/Synthetix.json
+        - name: Oikos
+          file: ./abis/Oikos.json
       eventHandlers:
         - event: Issued(indexed address,uint256)
           handler: handleIssuedODR

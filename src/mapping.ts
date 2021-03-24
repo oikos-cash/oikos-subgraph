@@ -1,7 +1,7 @@
-import { Synthetix as SNX, Transfer as TransferEvent } from '../generated/Synthetix/Synthetix';
-import { TargetUpdated as TargetUpdatedEvent } from '../generated/ProxySynthetix/Proxy';
+import { Oikos as SNX, Transfer as TransferEvent } from '../generated/Oikos/Oikos';
+import { TargetUpdated as TargetUpdatedEvent } from '../generated/ProxyOikos/Proxy';
 import { sUSD32 } from './common';
-import { SynthetixState } from '../generated/Synthetix/SynthetixState';
+import { OikosState } from '../generated/Oikos/OikosState';
 
 import {
   Synth,
@@ -10,7 +10,7 @@ import {
   Burned as BurnedEvent,
 } from '../generated/SynthsUSD/Synth';
 import { 
-        Synthetix, 
+        Oikos, 
         Transfer, 
         Issued, 
         Burned, 
@@ -30,17 +30,17 @@ let contracts = new Map<string, string>();
 contracts.set('escrow', '0x971e78e0c92392a4e39099835cf7e6ab535b2227');
 contracts.set('rewardEscrow', '0xb671f2210b1f6621a2607ea63e6b2dc3e2464d1f');
 
-function getMetadata(): Synthetix {
-  let synthetix = Synthetix.load('1');
+function getMetadata(): Oikos {
+  let oikos = Oikos.load('1');
 
-  if (synthetix == null) {
-    synthetix = new Synthetix('1');
-    synthetix.issuers = BigInt.fromI32(0);
-    synthetix.snxHolders = BigInt.fromI32(0);
-    synthetix.save();
+  if (oikos == null) {
+    oikos = new Oikos('1');
+    oikos.issuers = BigInt.fromI32(0);
+    oikos.snxHolders = BigInt.fromI32(0);
+    oikos.save();
   }
 
-  return synthetix as Synthetix;
+  return oikos as Oikos;
 }
 
 function decrementMetadata(field: string): void {
@@ -83,31 +83,31 @@ function trackSNXHolder(snxContract: Address, account: Address, timestamp:BigInt
     incrementMetadata('snxHolders');
   }
   let snxHolder = new SNXHolder(account.toHex());
-  let synthetix = SNX.bind(snxContract);
-  snxHolder.balanceOf = synthetix.balanceOf(account);
+  let oikos = SNX.bind(snxContract);
+  snxHolder.balanceOf = oikos.balanceOf(account);
 
-  let transferableSynthetixTry = synthetix.try_transferableSynthetix(account);
-  if (!transferableSynthetixTry.reverted) {
-    snxHolder.transferable = transferableSynthetixTry.value;
+  let transferableOikosTry = oikos.try_transferableOikos(account);
+  if (!transferableOikosTry.reverted) {
+    snxHolder.transferable = transferableOikosTry.value;
   }  
   snxHolder.block = block;
   snxHolder.timestamp = timestamp;
-  let synthetixCollateralTry = synthetix.try_collateral(account);
-  if (!synthetixCollateralTry.reverted) {
-    snxHolder.collateral = synthetixCollateralTry.value;
+  let oikosCollateralTry = oikos.try_collateral(account);
+  if (!oikosCollateralTry.reverted) {
+    snxHolder.collateral = oikosCollateralTry.value;
   }
 
-  let stateTry = synthetix.try_synthetixState();
+  /*let stateTry = oikos.try_tokenState();
   if (!stateTry.reverted) {
-    let synthetixStateContract = synthetix.synthetixState();
-    let synthetixState = SynthetixState.bind(synthetixStateContract);
-    let issuanceData = synthetixState.issuanceData(account); 
+    let oikosStateContract = oikos.oikosState();
+    let oikosState = OikosState.bind(oikosStateContract);
+    let issuanceData = oikosState.issuanceData(account); 
     snxHolder.initialDebtOwnership = issuanceData.value0;
-    let debtLedgerTry = synthetixState.try_debtLedger(issuanceData.value1);
+    let debtLedgerTry = oikosState.try_debtLedger(issuanceData.value1);
     if (!debtLedgerTry.reverted) {
       snxHolder.debtEntryAtIndex = debtLedgerTry.value;
     }
-  }
+  }*/
   if (
     (existingSNXHolder == null && snxHolder.balanceOf > BigInt.fromI32(0)) ||
     (existingSNXHolder != null &&
@@ -208,7 +208,7 @@ export function handleBurnedsUSD(event: BurnedEvent): void {
 
 export function handleProxyTargetUpdated(event: TargetUpdatedEvent): void {
   let entity = new ProxyTargetUpdated(event.transaction.hash.toHex() + '-' + event.logIndex.toString());
-  entity.source = 'Synthetix'; // hardcoded for now
+  entity.source = 'Oikos'; // hardcoded for now
   entity.newTarget = event.params.newTarget;
   entity.block = event.block.number;
   entity.tx = event.transaction.hash;
@@ -230,19 +230,19 @@ function trackDebtSnapshot(event: BurnedEvent): void {
   entity.account = account;
 
  
-  let synthetix = SNX.bind(snxContract);
-  let balanceOfTry = synthetix.try_balanceOf(account);
+  let oikos = SNX.bind(snxContract);
+  let balanceOfTry = oikos.try_balanceOf(account);
   if (!balanceOfTry.reverted) {
     entity.balanceOf = balanceOfTry.value;
   }
 
-  let collateralTry = synthetix.try_collateral(account);
+  let collateralTry = oikos.try_collateral(account);
   if (!collateralTry.reverted) {
     entity.collateral = collateralTry.value;
   }
  
-  //entity.debtBalanceOf = synthetix.debtBalanceOf(account, sUSD32);
-  let debtBalanceOfTry = synthetix.try_debtBalanceOf(account, sUSD32);
+  //entity.debtBalanceOf = oikos.debtBalanceOf(account, sUSD32);
+  let debtBalanceOfTry = oikos.try_debtBalanceOf(account, sUSD32);
   if (!debtBalanceOfTry.reverted) {
     entity.debtBalanceOf = debtBalanceOfTry.value;
   }
@@ -258,9 +258,9 @@ function trackActiveStakersB(event: BurnedEvent): void {
   let accountDebtBalance = BigInt.fromI32(0);
 
  
-  let synthetix = SNX.bind(snxContract);
-  //accountDebtBalance = synthetix.debtBalanceOf(account, sUSD32);
-  let debtBalanceOfTry = synthetix.try_debtBalanceOf(account, sUSD32);
+  let oikos = SNX.bind(snxContract);
+  //accountDebtBalance = oikos.debtBalanceOf(account, sUSD32);
+  let debtBalanceOfTry = oikos.try_debtBalanceOf(account, sUSD32);
   if (!debtBalanceOfTry.reverted) {
     accountDebtBalance = debtBalanceOfTry.value;
   }
@@ -304,8 +304,8 @@ function trackActiveStakersI(event: IssuedEvent): void {
   let accountDebtBalance = BigInt.fromI32(0);
 
  
-  let synthetix = SNX.bind(snxContract);
-  let debtBalanceOfTry = synthetix.try_debtBalanceOf(account, sUSD32);
+  let oikos = SNX.bind(snxContract);
+  let debtBalanceOfTry = oikos.try_debtBalanceOf(account, sUSD32);
   if (!debtBalanceOfTry.reverted) {
     accountDebtBalance = debtBalanceOfTry.value;
   }

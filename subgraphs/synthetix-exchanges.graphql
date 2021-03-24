@@ -25,7 +25,7 @@ type FifteenMinuteTotal @entity {
   totalFeesGeneratedInUSD: BigInt!
 }
 
-# SynthExchange tracks this event from the Synthetix.sol contract
+# SynthExchange tracks this event from the Oikos.sol contract
 type SynthExchange @entity {
   id: ID!
   account: Bytes! # address

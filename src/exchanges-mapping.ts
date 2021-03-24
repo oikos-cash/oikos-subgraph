@@ -1,4 +1,4 @@
-import { Synthetix, SynthExchange as SynthExchangeEvent } from '../generated/Synthetix/Synthetix';
+import { Oikos, SynthExchange as SynthExchangeEvent } from '../generated/Oikos/Oikos';
 import { Synth as SynthXDR32 } from '../generated/SynthODR/Synth';
 
 import { Total, DailyTotal, DailyExchanger, FifteenMinuteExchanger, FifteenMinuteTotal, SynthExchange, Exchanger } from '../generated/schema';
@@ -87,16 +87,16 @@ export function handleSynthExchange(event: SynthExchangeEvent): void {
 
  
  
-  let synthetix = Synthetix.bind(event.address);
+  let oikos = Oikos.bind(event.address);
 
-  let effectiveValueTry = synthetix.try_effectiveValue(
+  let effectiveValueTry = oikos.try_effectiveValue(
     event.params.fromCurrencyKey,
     event.params.fromAmount,
     sUSD32,
   );
   if (!effectiveValueTry.reverted) {
     fromAmountInUSD = effectiveValueTry.value;
-    toAmountInUSD = synthetix.effectiveValue(event.params.toCurrencyKey, event.params.toAmount, sUSD32);
+    toAmountInUSD = oikos.effectiveValue(event.params.toCurrencyKey, event.params.toAmount, sUSD32);
   }
   log.debug('Got fromAmountInUSD: {}, toAmountInUSD: {}', [
     fromAmountInUSD.toString(),
@@ -203,8 +203,8 @@ export function handleIssuedODR(event: IssuedEvent): void {
     return;
   }
     let synthXDR = SynthXDR32.bind(event.address);
-    let synthetix = Synthetix.bind(synthXDR.synthetixProxy());
-    let effectiveValueTry = synthetix.try_effectiveValue(synthXDR.currencyKey(), event.params.value, sUSD32);
+    let oikos = Oikos.bind(synthXDR.oikosProxy());
+    let effectiveValueTry = oikos.try_effectiveValue(synthXDR.currencyKey(), event.params.value, sUSD32);
     if (!effectiveValueTry.reverted) {
       let metadata = getMetadata();
       metadata.totalFeesGeneratedInUSD = metadata.totalFeesGeneratedInUSD.plus(effectiveValueTry.value);

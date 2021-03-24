@@ -1,5 +1,20 @@
 [
   {
+    "constant": true,
+    "inputs": [],
+    "name": "oikos",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x0c7c95ad"
+  },
+  {
     "constant": false,
     "inputs": [
       {
@@ -11,7 +26,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x135c0701"
   },
   {
     "constant": false,
@@ -25,7 +41,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x1627540c"
   },
   {
     "constant": true,
@@ -44,7 +61,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x19e740c0"
   },
   {
     "constant": false,
@@ -66,7 +84,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x1bb47b44"
   },
   {
     "constant": true,
@@ -85,7 +104,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x204b676a"
   },
   {
     "constant": true,
@@ -104,7 +124,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x227d517a"
   },
   {
     "constant": true,
@@ -123,7 +144,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x2f5bb661"
   },
   {
     "constant": false,
@@ -132,7 +154,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x458efde3"
   },
   {
     "constant": true,
@@ -159,7 +182,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x45e5441f"
   },
   {
     "constant": true,
@@ -173,7 +197,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x53a47bb7"
   },
   {
     "constant": true,
@@ -192,7 +217,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x6b3905c4"
   },
   {
     "constant": true,
@@ -211,21 +237,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "synthetix",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x70a08231"
   },
   {
     "constant": false,
@@ -234,7 +247,23 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x79ba5097"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "quantity",
+        "type": "uint256"
+      }
+    ],
+    "name": "withdrawOikos",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x7abad8e3"
   },
   {
     "constant": true,
@@ -248,7 +277,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x8da5cb5b"
   },
   {
     "constant": true,
@@ -267,7 +297,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x97f46527"
   },
   {
     "constant": true,
@@ -290,7 +321,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x9b217f90"
   },
   {
     "constant": true,
@@ -304,7 +336,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xa15d59ce"
   },
   {
     "constant": false,
@@ -326,7 +359,8 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0xbb2a7d0c"
   },
   {
     "constant": true,
@@ -349,21 +383,8 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "quantity",
-        "type": "uint256"
-      }
-    ],
-    "name": "withdrawSynthetix",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0xda7bd3e9"
   },
   {
     "constant": true,
@@ -386,21 +407,23 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0xee1d036c"
   },
   {
     "constant": false,
     "inputs": [
       {
-        "name": "_synthetix",
+        "name": "_oikos",
         "type": "address"
       }
     ],
-    "name": "setSynthetix",
+    "name": "setOikos",
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0xfe46a480"
   },
   {
     "inputs": [
@@ -409,7 +432,7 @@
         "type": "address"
       },
       {
-        "name": "_synthetix",
+        "name": "_oikos",
         "type": "address"
       }
     ],
@@ -422,12 +445,13 @@
     "inputs": [
       {
         "indexed": false,
-        "name": "newSynthetix",
+        "name": "newOikos",
         "type": "address"
       }
     ],
-    "name": "SynthetixUpdated",
-    "type": "event"
+    "name": "OikosUpdated",
+    "type": "event",
+    "signature": "0xcb046e61ab451d5fec11d3dfc4c550475bd0abd8df74a421c34be433f197c4df"
   },
   {
     "anonymous": false,
@@ -449,7 +473,8 @@
       }
     ],
     "name": "Vested",
-    "type": "event"
+    "type": "event",
+    "signature": "0xfbeff59d2bfda0d79ea8a29f8c57c66d48c7a13eabbdb90908d9115ec41c9dc6"
   },
   {
     "anonymous": false,
@@ -461,7 +486,8 @@
       }
     ],
     "name": "OwnerNominated",
-    "type": "event"
+    "type": "event",
+    "signature": "0x906a1c6bd7e3091ea86693dd029a831c19049ce77f1dce2ce0bab1cacbabce22"
   },
   {
     "anonymous": false,
@@ -478,6 +504,7 @@
       }
     ],
     "name": "OwnerChanged",
-    "type": "event"
+    "type": "event",
+    "signature": "0xb532073b38c83145e3e5135377a08bf9aab55bc0fd7c1179cd4fb995d2a5159c"
   }
 ]
