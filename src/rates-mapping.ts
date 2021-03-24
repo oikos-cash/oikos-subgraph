@@ -3,25 +3,25 @@ import { RatesUpdated as RatesUpdatedEvent, ExchangeRates } from '../generated/E
 import {
   RatesUpdated,
   RateUpdate,
-  FifteenMinuteSNXPrice,
-  DailySNXPrice,
+  FifteenMinuteOKSPrice,
+  DailyOKSPrice,
   LatestRate,
 } from '../generated/schema';
 
 import { ByteArray, Bytes, BigInt, Address, log } from '@graphprotocol/graph-ts';
 
-function loadDailySNXPrice(id: string): DailySNXPrice {
-  let newDailySNXPrice = new DailySNXPrice(id);
-  newDailySNXPrice.count = BigInt.fromI32(0);
-  newDailySNXPrice.averagePrice = BigInt.fromI32(0);
-  return newDailySNXPrice;
+function loadDailyOKSPrice(id: string): DailyOKSPrice {
+  let newDailyOKSPrice = new DailyOKSPrice(id);
+  newDailyOKSPrice.count = BigInt.fromI32(0);
+  newDailyOKSPrice.averagePrice = BigInt.fromI32(0);
+  return newDailyOKSPrice;
 }
 
-function loadFifteenMinuteSNXPrice(id: string): FifteenMinuteSNXPrice {
-  let newFifteenMinuteSNXPrice = new FifteenMinuteSNXPrice(id);
-  newFifteenMinuteSNXPrice.count = BigInt.fromI32(0);
-  newFifteenMinuteSNXPrice.averagePrice = BigInt.fromI32(0);
-  return newFifteenMinuteSNXPrice;
+function loadFifteenMinuteOKSPrice(id: string): FifteenMinuteOKSPrice {
+  let newFifteenMinuteOKSPrice = new FifteenMinuteOKSPrice(id);
+  newFifteenMinuteOKSPrice.count = BigInt.fromI32(0);
+  newFifteenMinuteOKSPrice.averagePrice = BigInt.fromI32(0);
+  return newFifteenMinuteOKSPrice;
 }
 
 function calculateAveragePrice(oldAveragePrice: BigInt, newRate: BigInt, newCount: BigInt): BigInt {
@@ -31,33 +31,33 @@ function calculateAveragePrice(oldAveragePrice: BigInt, newRate: BigInt, newCoun
     .div(newCount);
 }
 
-function handleSNXPrices(timestamp: BigInt, rate: BigInt): void {
+function handleOKSPrices(timestamp: BigInt, rate: BigInt): void {
   let dayID = timestamp.toI32() / 86400;
   let fifteenMinuteID = timestamp.toI32() / 900;
 
-  let dailySNXPrice = DailySNXPrice.load(dayID.toString());
-  let fifteenMinuteSNXPrice = FifteenMinuteSNXPrice.load(fifteenMinuteID.toString());
+  let dailyOKSPrice = DailyOKSPrice.load(dayID.toString());
+  let fifteenMinuteOKSPrice = FifteenMinuteOKSPrice.load(fifteenMinuteID.toString());
 
-  if (dailySNXPrice == null) {
-    dailySNXPrice = loadDailySNXPrice(dayID.toString());
+  if (dailyOKSPrice == null) {
+    dailyOKSPrice = loadDailyOKSPrice(dayID.toString());
   }
 
-  if (fifteenMinuteSNXPrice == null) {
-    fifteenMinuteSNXPrice = loadFifteenMinuteSNXPrice(fifteenMinuteID.toString());
+  if (fifteenMinuteOKSPrice == null) {
+    fifteenMinuteOKSPrice = loadFifteenMinuteOKSPrice(fifteenMinuteID.toString());
   }
 
-  dailySNXPrice.count = dailySNXPrice.count.plus(BigInt.fromI32(1));
-  dailySNXPrice.averagePrice = calculateAveragePrice(dailySNXPrice.averagePrice, rate, dailySNXPrice.count);
+  dailyOKSPrice.count = dailyOKSPrice.count.plus(BigInt.fromI32(1));
+  dailyOKSPrice.averagePrice = calculateAveragePrice(dailyOKSPrice.averagePrice, rate, dailyOKSPrice.count);
 
-  fifteenMinuteSNXPrice.count = fifteenMinuteSNXPrice.count.plus(BigInt.fromI32(1));
-  fifteenMinuteSNXPrice.averagePrice = calculateAveragePrice(
-    fifteenMinuteSNXPrice.averagePrice,
+  fifteenMinuteOKSPrice.count = fifteenMinuteOKSPrice.count.plus(BigInt.fromI32(1));
+  fifteenMinuteOKSPrice.averagePrice = calculateAveragePrice(
+    fifteenMinuteOKSPrice.averagePrice,
     rate,
-    fifteenMinuteSNXPrice.count,
+    fifteenMinuteOKSPrice.count,
   );
 
-  dailySNXPrice.save();
-  fifteenMinuteSNXPrice.save();
+  dailyOKSPrice.save();
+  fifteenMinuteOKSPrice.save();
 }
 
 
@@ -88,7 +88,7 @@ export function handleRatesUpdated(event: RatesUpdatedEvent): void {
       rateEntity.rate = rates[i];
       rateEntity.save();
       if (keys[i].toString() == 'OKS') {
-        handleSNXPrices(event.block.timestamp, rateEntity.rate);
+        handleOKSPrices(event.block.timestamp, rateEntity.rate);
       }
       addLatestRate(rateEntity.synth, rateEntity.rate);
     }

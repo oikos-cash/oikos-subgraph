@@ -2,7 +2,7 @@
 type Oikos @entity {
   id: ID!
   issuers: BigInt!
-  snxHolders: BigInt!
+  oksHolders: BigInt!
 }
 
 # Transfer tracks this event from the Oikos.sol contract and various Synth.sol contracts
@@ -34,8 +34,8 @@ type Issuer @entity {
   collateralisationRatio: BigInt # will be null before multicurrency release
 }
 
-# An individual SNX holder (always overridden with their latest information)
-type SNXHolder @entity {
+# An individual OKS holder (always overridden with their latest information)
+type OKSHolder @entity {
   id: ID! # address of potential holder
   # last block where an event happened
   block: BigInt!

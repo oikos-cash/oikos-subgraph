@@ -19,15 +19,15 @@ type RateUpdate @entity {
   timestamp: BigInt!
 }
 
-# The average price of SNX over a 15 minute period
-type FifteenMinuteSNXPrice @entity {
+# The average price of OKS over a 15 minute period
+type FifteenMinuteOKSPrice @entity {
   id: ID!
   count: BigInt!
   averagePrice: BigInt!
 }
 
-# The average price of SNX over a day
-type DailySNXPrice @entity {
+# The average price of OKS over a day
+type DailyOKSPrice @entity {
   id: ID!
   count: BigInt!
   averagePrice: BigInt!
