@@ -25,7 +25,7 @@ dataSources:
           file: ./abis/OikosState.json          
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransferOKS
+          handler: 
   - kind: ethereum/contract
     name: ProxyOikos
     network: bsc
@@ -103,7 +103,7 @@ dataSources:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransferSynth
   - kind: ethereum/contract
-    name: SynthsBTC
+    name: SynthoBTC
     network: bsc
     source:
       address: '0x19e0E8413DEe3AfFd94bdd42519d01935a0CF0c2' # ProxysBTC
