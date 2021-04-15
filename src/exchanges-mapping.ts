@@ -1,5 +1,6 @@
 import { Oikos, SynthExchange as SynthExchangeEvent } from '../generated/Oikos/Oikos';
 import { Synth as SynthXDR32 } from '../generated/SynthODR/Synth';
+import { ExchangeRates } from '../generated/ExchangeRates/ExchangeRates';
 
 import { Total, DailyTotal, DailyExchanger, FifteenMinuteExchanger, FifteenMinuteTotal, SynthExchange, Exchanger } from '../generated/schema';
 
@@ -15,6 +16,10 @@ import {
   Issued as IssuedEvent,
   Burned as BurnedEvent,
 } from '../generated/SynthsUSD/Synth';
+
+let contracts = new Map<string, string>();
+contracts.set('exRates', '0x9A1D6d7900eC1E34bF22f85a139a21461D4bFB42');
+
 
 function getMetadata(): Total {
   let total = Total.load('1');
@@ -85,19 +90,21 @@ export function handleSynthExchange(event: SynthExchangeEvent): void {
   let toAmountInUSD = BigInt.fromI32(0);
   let feesInUSD = BigInt.fromI32(0);
 
- 
- 
   let oikos = Oikos.bind(event.address);
+  let exRatesAddr = Address.fromString(contracts.get('exRates'));
 
-  let effectiveValueTry = oikos.try_effectiveValue(
+  let exRates = ExchangeRates.bind(exRatesAddr);
+  let effectiveValueTry = attemptEffectiveValue(
+    exRates,
     event.params.fromCurrencyKey,
-    event.params.fromAmount,
-    sUSD32,
+    event.params.fromAmount
   );
-  if (!effectiveValueTry.reverted) {
-    fromAmountInUSD = effectiveValueTry.value;
-    toAmountInUSD = oikos.effectiveValue(event.params.toCurrencyKey, event.params.toAmount, sUSD32);
+
+  if (effectiveValueTry != null) {
+    fromAmountInUSD = event.params.fromAmount;
+    toAmountInUSD = effectiveValueTry;
   }
+
   log.debug('Got fromAmountInUSD: {}, toAmountInUSD: {}', [
     fromAmountInUSD.toString(),
     toAmountInUSD.toString(),
@@ -202,15 +209,24 @@ export function handleIssuedODR(event: IssuedEvent): void {
   if (exchangesToIgnore.indexOf(event.transaction.hash.toHex()) >= 0) {
     return;
   }
-    let synthXDR = SynthXDR32.bind(event.address);
-    let oikos = Oikos.bind(synthXDR.oikosProxy());
-    let effectiveValueTry = oikos.try_effectiveValue(synthXDR.currencyKey(), event.params.value, sUSD32);
-    if (!effectiveValueTry.reverted) {
-      let metadata = getMetadata();
-      metadata.totalFeesGeneratedInUSD = metadata.totalFeesGeneratedInUSD.plus(effectiveValueTry.value);
-      metadata.save();
+   
+  let synthXDR = SynthXDR32.bind(event.address);
+
+    let proxyTry = synthXDR.try_proxy();
+
+    if (!proxyTry.reverted) {
+      let oikos = Oikos.bind(proxyTry.value);
+      let exRatesAddr = Address.fromString(contracts.get('exRates'));
+
+      let exRates = ExchangeRates.bind(exRatesAddr);
+      let effectiveValueTry = attemptEffectiveValue(exRates, synthXDR.currencyKey(), event.params.value);
+
+      if (effectiveValueTry != null) {
+        let metadata = getMetadata();
+        metadata.totalFeesGeneratedInUSD = metadata.totalFeesGeneratedInUSD.plus(effectiveValueTry);
+        metadata.save();
+      }
     }
- 
 }
 
 function addTotalFeesAndVolume(total: Total, fromAmountInUSD: BigInt, feesInUSD: BigInt): Total {
