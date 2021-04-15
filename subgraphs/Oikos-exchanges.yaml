@@ -1,0 +1,28 @@
+specVersion: 0.0.2
+description: Oikos API
+repository: https://github.com/Oikosio/oikos-subgraph
+schema:
+  file: ./subgraphs/oikos-exchanges.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Oikos
+    network: bsc
+    source:
+      address: '0x18aCf236eB40c0d4824Fb8f2582EBbEcD325Ef6a' # ProxyOikos
+      abi: Oikos
+      startBlock: 5710000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/exchanges-mapping.ts
+      entities:
+        - SynthExchange
+      abis:
+        - name: Oikos
+          file: ./abis/Oikos.json
+        - name: ExchangeRates
+          file: ./abis/ExchangeRates.json
+      eventHandlers:
+        - event: SynthExchange(indexed address,bytes32,uint256,bytes32,uint256,address)
+          handler: handleSynthExchange

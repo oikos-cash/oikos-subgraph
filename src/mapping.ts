@@ -97,17 +97,18 @@ function trackOKSHolder(oksContract: Address, account: Address, timestamp:BigInt
     oksHolder.collateral = oikosCollateralTry.value;
   }
 
-  /*let stateTry = oikos.try_tokenState();
+  let stateTry = oikos.try_tokenState();
   if (!stateTry.reverted) {
-    let oikosStateContract = oikos.oikosState();
-    let oikosState = OikosState.bind(oikosStateContract);
+    let oikosStateAddr = Address.fromString("0x5065DfD3598D6Dfdc43E6621FAe5ECF78aadbeC1");
+    let oikosState = OikosState.bind(oikosStateAddr);
     let issuanceData = oikosState.issuanceData(account); 
     oksHolder.initialDebtOwnership = issuanceData.value0;
     let debtLedgerTry = oikosState.try_debtLedger(issuanceData.value1);
     if (!debtLedgerTry.reverted) {
       oksHolder.debtEntryAtIndex = debtLedgerTry.value;
     }
-  }*/
+  }
+  
   if (
     (existingOKSHolder == null && oksHolder.balanceOf > BigInt.fromI32(0)) ||
     (existingOKSHolder != null &&
