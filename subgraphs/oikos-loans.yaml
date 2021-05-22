@@ -1,0 +1,30 @@
+specVersion: 0.0.2
+description: Oikos BNBCollateral API
+repository: https://github.com/oikos-cash/oikos-subgraph
+schema:
+  file: ./subgraphs/oikos-loans.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: BNBCollateral
+    network: bsc
+    source:
+      address: '0x7F110C0e1256705cf87E660f2a01889A647189bd'
+      abi: BNBCollateral
+      startBlock: 7635945
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/loans-mapping.ts
+      entities:
+        - Loan
+        - LoanCreated
+        - LoanClosed
+      abis:
+        - name: BNBCollateral
+          file: ./abis/BNBCollateral.json
+      eventHandlers:
+        - event: LoanCreated(indexed address,uint256,uint256)
+          handler: handleLoanCreated
+        - event: LoanClosed(indexed address,uint256,uint256)
+          handler: handleLoanClosed
