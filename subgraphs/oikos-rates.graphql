@@ -40,3 +40,25 @@ type LatestRate @entity {
   " Synth USD rate with 18 decimals "
   rate: BigInt!
 }
+
+# A chainlink Answer
+type AggregatorAnswer @entity {
+  id: ID!
+  currencyKey: Bytes!
+  synth: String!
+  rate: BigInt!
+  aggregator: Bytes! # address
+  block: BigInt!
+  timestamp: BigInt!
+}
+
+type Price @entity {
+  id: ID!
+  assetPair: AssetPair!
+  timestamp: BigInt!
+  price: BigInt!
+}
+
+type AssetPair @entity {
+  id: ID!
+}
