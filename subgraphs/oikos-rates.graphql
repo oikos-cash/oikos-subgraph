@@ -51,14 +51,3 @@ type AggregatorAnswer @entity {
   block: BigInt!
   timestamp: BigInt!
 }
-
-type Price @entity {
-  id: ID!
-  assetPair: AssetPair!
-  timestamp: BigInt!
-  price: BigInt!
-}
-
-type AssetPair @entity {
-  id: ID!
-}
