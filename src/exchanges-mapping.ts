@@ -1,25 +1,40 @@
-import { Oikos, SynthExchange as SynthExchangeEvent } from '../generated/Oikos/Oikos';
-import { Synth as SynthXDR32 } from '../generated/SynthODR/Synth';
-import { ExchangeRates } from '../generated/ExchangeRates/ExchangeRates';
+import { 
+        Oikos, 
+        SynthExchange as SynthExchangeEvent,
+        ExchangeReclaim as ExchangeReclaimEvent,
+        ExchangeRebate as ExchangeRebateEvent
+      } from '../generated/Oikos/Oikos';
 
-import { Total, DailyTotal, DailyExchanger, FifteenMinuteExchanger, FifteenMinuteTotal, SynthExchange, Exchanger } from '../generated/schema';
-
-import { log, BigInt, Address } from '@graphprotocol/graph-ts';
-
-import { exchangesToIgnore } from './exchangesToIgnore';
-
-import { attemptEffectiveValue, sUSD32,  } from './common';
+import { 
+        Total, 
+        DailyTotal, 
+        DailyExchanger, 
+        FifteenMinuteExchanger, 
+        ExchangeReclaim, 
+        ExchangeRebate, 
+        FifteenMinuteTotal, 
+        SynthExchange, 
+        Exchanger 
+      } from '../generated/schema';
 
 import {
-  Synth,
-  Transfer as SynthTransferEvent,
-  Issued as IssuedEvent,
-  Burned as BurnedEvent,
-} from '../generated/SynthsUSD/Synth';
+        Synth,
+        Transfer as SynthTransferEvent,
+        Issued as IssuedEvent,
+        Burned as BurnedEvent,
+      } from '../generated/SynthsUSD/Synth';
+
+import { Synth as SynthXDR32 } from '../generated/SynthODR/Synth';
+import { ExchangeRates } from '../generated/ExchangeRates/ExchangeRates';
+import { log, BigInt, Address } from '@graphprotocol/graph-ts';
+import { exchangesToIgnore } from './exchangesToIgnore';
+import { _attemptEffectiveValue, attemptEffectiveValue, sUSD32  } from './common';
+
+let v2 = BigInt.fromI32(8406666); // (Jun-18-2021 02:50:34 PM +UTC)
 
 let contracts = new Map<string, string>();
-contracts.set('exRates', '0x9A1D6d7900eC1E34bF22f85a139a21461D4bFB42');
-
+contracts.set('exRates_v1', '0x9A1D6d7900eC1E34bF22f85a139a21461D4bFB42');
+contracts.set('exRates_v2', '0xe1ff83762F2db7274b6AC2c1C9Bb75B2A8574EaF');
 
 function getMetadata(): Total {
   let total = Total.load('1');
@@ -89,12 +104,17 @@ export function handleSynthExchange(event: SynthExchangeEvent): void {
   let fromAmountInUSD = BigInt.fromI32(0);
   let toAmountInUSD = BigInt.fromI32(0);
   let feesInUSD = BigInt.fromI32(0);
+  let _exRates = "exRates_v1";
+
+  if (event.block.number > v2) {
+    _exRates = "exRates_v2";
+  }
 
   let oikos = Oikos.bind(event.address);
-  let exRatesAddr = Address.fromString(contracts.get('exRates'));
+  let exRatesAddr = Address.fromString(contracts.get(_exRates));
 
   let exRates = ExchangeRates.bind(exRatesAddr);
-  let effectiveValueTry = attemptEffectiveValue(
+  let effectiveValueTry = _attemptEffectiveValue(
     exRates,
     event.params.fromCurrencyKey,
     event.params.fromAmount
@@ -211,22 +231,84 @@ export function handleIssuedODR(event: IssuedEvent): void {
   }
    
   let synthXDR = SynthXDR32.bind(event.address);
+  let proxyTry = synthXDR.try_proxy();
+  let _exRates = "exRates_v1";
 
-    let proxyTry = synthXDR.try_proxy();
+  if (event.block.number > v2) {
+    _exRates = "exRates_v2";
+  }
 
-    if (!proxyTry.reverted) {
+  if (!proxyTry.reverted) {
       let oikos = Oikos.bind(proxyTry.value);
-      let exRatesAddr = Address.fromString(contracts.get('exRates'));
 
+      let exRatesAddr = Address.fromString(contracts.get(_exRates));
       let exRates = ExchangeRates.bind(exRatesAddr);
-      let effectiveValueTry = attemptEffectiveValue(exRates, synthXDR.currencyKey(), event.params.value);
+      let effectiveValueTry = _attemptEffectiveValue(exRates, synthXDR.currencyKey(), event.params.value);
 
       if (effectiveValueTry != null) {
         let metadata = getMetadata();
         metadata.totalFeesGeneratedInUSD = metadata.totalFeesGeneratedInUSD.plus(effectiveValueTry);
         metadata.save();
       }
-    }
+  }
+}
+
+ 
+
+export function handleExchangeReclaim(event: ExchangeReclaimEvent): void {
+  let entity = new ExchangeReclaim(event.transaction.hash.toHex() + '-' + event.logIndex.toString());
+  entity.account = event.params.account;
+  entity.amount = event.params.amount;
+  entity.currencyKey = event.params.currencyKey;
+  entity.timestamp = event.block.timestamp;
+  entity.block = event.block.number;
+  entity.gasPrice = event.transaction.gasPrice;
+  let _exRates = "exRates_v1";
+
+  if (event.block.number > v2) {
+    _exRates = "exRates_v2";
+  }
+
+  let exRatesAddr = Address.fromString(contracts.get(_exRates));
+  let exRates = ExchangeRates.bind(exRatesAddr);
+  let effectiveValueTry = _attemptEffectiveValue(
+    exRates,
+    event.params.currencyKey,
+    event.params.amount
+  );
+  if (effectiveValueTry != null) {
+    entity.amountInUSD = effectiveValueTry;
+  } 
+
+}
+
+export function handleExchangeRebate(event: ExchangeRebateEvent): void {
+  let entity = new ExchangeRebate(event.transaction.hash.toHex() + '-' + event.logIndex.toString());
+  entity.account = event.params.account;
+  entity.amount = event.params.amount;
+  entity.currencyKey = event.params.currencyKey;
+  entity.timestamp = event.block.timestamp;
+  entity.block = event.block.number;
+  entity.gasPrice = event.transaction.gasPrice;
+  let _exRates = "exRates_v1";
+
+  if (event.block.number > v2) {
+    _exRates = "exRates_v2";
+  }
+
+  let exRatesAddr = Address.fromString(contracts.get(_exRates));
+  let exRates = ExchangeRates.bind(exRatesAddr);
+
+  let effectiveValueTry = _attemptEffectiveValue(
+    exRates,
+    event.params.currencyKey,
+    event.params.amount
+  );
+
+  if (effectiveValueTry != null) {
+    entity.amountInUSD = effectiveValueTry;
+  }    
+  entity.save();
 }
 
 function addTotalFeesAndVolume(total: Total, fromAmountInUSD: BigInt, feesInUSD: BigInt): Total {
