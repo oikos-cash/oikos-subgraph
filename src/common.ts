@@ -8,10 +8,18 @@ export let sUSD32 = ByteArray.fromHexString(
 ) as Bytes;
 export let sUSD4 = ByteArray.fromHexString('0x73555344') as Bytes;
 
-export function attemptEffectiveValue(exRates: ExchangeRates, currencyKey: Bytes, amount: BigInt): BigInt {
-  let sUSD = sUSD32;
+export function _attemptEffectiveValue(exRates: ExchangeRates, currencyKey: Bytes, amount: BigInt): BigInt {
 
-  let effectiveValueTry = exRates.try_effectiveValue(currencyKey, amount, sUSD);
+  let effectiveValueTry = exRates.try_effectiveValue(currencyKey, amount, sUSD32);
+  if (!effectiveValueTry.reverted) {
+    return effectiveValueTry.value;
+  }
+  return null;
+}
+
+export function attemptEffectiveValue(oikos: OKS, currencyKey: Bytes, amount: BigInt): BigInt {
+
+  let effectiveValueTry = oikos.try_effectiveValue(currencyKey, amount, sUSD32);
   if (!effectiveValueTry.reverted) {
     return effectiveValueTry.value;
   }
