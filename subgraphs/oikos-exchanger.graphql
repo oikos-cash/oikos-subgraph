@@ -52,12 +52,12 @@ type AggregatorAnswer @entity {
   id: ID!
   currencyKey: Bytes!
   synth: String!
-  aggregator: Bytes!
   rate: BigInt!
-  roundId: BigInt!
+  aggregator: Bytes! # address
   block: BigInt!
   timestamp: BigInt!
 }
+
 
 # The average price of OKS over a 15 minute period
 type FifteenMinuteOKSPrice @entity {
