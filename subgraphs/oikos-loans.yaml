@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0x7F110C0e1256705cf87E660f2a01889A647189bd'
       abi: BNBCollateral
-      startBlock: 7635945
+      startBlock: 8600000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

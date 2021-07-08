@@ -25,3 +25,8 @@ export function attemptEffectiveValue(oikos: OKS, currencyKey: Bytes, amount: Bi
   }
   return null;
 }
+
+export function getTimeID(timestampI32: i32, num: i32): string {
+  let id = timestampI32 / num;
+  return id.toString();
+}

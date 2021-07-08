@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0x18aCf236eB40c0d4824Fb8f2582EBbEcD325Ef6a' # ProxyOikos
       abi: Oikos
-      startBlock: 8500000
+      startBlock: 7796112
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
