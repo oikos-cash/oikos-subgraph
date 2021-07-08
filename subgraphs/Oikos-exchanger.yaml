@@ -8,7 +8,7 @@ dataSources:
     name: Exchanger
     network: bsc
     source:
-      address: '0xf283B16be2C742AdC682facB5a06609De05A032D'
+      address: '0x18aCf236eB40c0d4824Fb8f2582EBbEcD325Ef6a'
       abi: Exchanger
       startBlock: 8960693
     mapping:
