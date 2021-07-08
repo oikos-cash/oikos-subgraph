@@ -13,8 +13,7 @@ import {
   FifteenMinuteOKSPrice,
   DailyOKSPrice,
   LatestRate,
-  AggregatorAnswer,
-  Price, AssetPair
+  AggregatorAnswer
 } from '../generated/schema';
 
 import { ByteArray, Bytes, BigInt, Address, log } from '@graphprotocol/graph-ts';
