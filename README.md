@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/Oikosio/oikos-subgraph.svg?style=svg)](https://circleci.com/gh/Oikosio/oikos-subgraph)
 
-Here is the code for Oikos's current subgraph: https://thegraph.com/explorer/subgraph/oikosio-team/oikos
+Here is the code for Oikos's current subgraph: https://thegraph.com/explorer/subgraph/oikos-cash/oikos
 
 The Graph exposes a GraphQL endpoint to query the events and entities within the Oikos system.
 
