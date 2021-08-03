@@ -1,4 +1,4 @@
-import { Bytes, ByteArray, BigInt } from '@graphprotocol/graph-ts';
+import { Bytes, ByteArray, BigInt, BigDecimal } from '@graphprotocol/graph-ts';
 
 import { Oikos as OKS } from '../generated/Oikos/Oikos';
 import { ExchangeRates } from '../generated/ExchangeRates/ExchangeRates';
@@ -16,7 +16,16 @@ export function _attemptEffectiveValue(exRates: ExchangeRates, currencyKey: Byte
   }
   return null;
 }
-
+// Extrapolated from ByteArray.fromUTF8
+export function strToBytes(string: string, length: i32 = 32): Bytes {
+  let utf8 = string.toUTF8();
+  let bytes = new ByteArray(length);
+  let strLen = string.lengthUTF8 - 1;
+  for (let i: i32 = 0; i < strLen; i++) {
+    bytes[i] = load<u8>(utf8 + i);
+  }
+  return bytes as Bytes;
+}
 export function attemptEffectiveValue(oikos: OKS, currencyKey: Bytes, amount: BigInt): BigInt {
 
   let effectiveValueTry = oikos.try_effectiveValue(currencyKey, amount, sUSD32);
