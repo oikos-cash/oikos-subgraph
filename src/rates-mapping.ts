@@ -154,8 +154,25 @@ feedsToProxies.set(
   '0xc54645d805aca807e7f40b9308d159bb62939e3a',
   '0x86896fEB19D8A607c3b11f2aF50A0f239Bd71CD0', 
 );
+feedsToProxies.set(
+  // oCAKE
+  '0x7935a51addab8550d346feef34e02f67c9330109',
+  '0xB6064eD41d4f67e353768aA239cA86f4F73665a1', 
+);
+feedsToProxies.set(
+  // oDOT
+  '0xe978daa50d3a8574f139c1e3fe5d511ddb323bc5',
+  '0xC333eb0086309a16aa7c8308DfD32c8BBA0a2592', 
+);
+feedsToProxies.set(
+  // oICP
+  '0xfb3e6157ba71c0d8853690c4fd3ff88109a79103',
+  '0x84210d9013A30C6ab169e28840A6CC54B60fa042', 
+);
 export function handleAnswerUpdated(event: AnswerUpdatedEvent): void {
-
+  log.debug('Event address:{}  ', [
+    event.address.toHexString(),
+  ]);
     let exRatesAddress = Address.fromString("0xe1ff83762F2db7274b6AC2c1C9Bb75B2A8574EaF");
     let exrates = ExchangeRates.bind(exRatesAddress);
     let proxy = feedsToProxies.get(event.address.toHexString());
