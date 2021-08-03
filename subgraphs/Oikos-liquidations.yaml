@@ -1,0 +1,35 @@
+specVersion: 0.0.2
+description: Oikos API
+repository: https://github.com/oikos-cash/oikos-subgraph
+schema:
+  file: ./subgraphs/oikos-liquidations.graphql
+dataSources:
+  # for the latest Proxy
+  # Handle Liquidations Flagged
+  - kind: ethereum/contract
+    name: Liquidations
+    network: bsc
+    source:
+      address: '0xF2306Bfe229e13768b0b433285445CC388707C6f' # Liquidations
+      abi: Liquidations
+      startBlock: 8983735 # creation of Liquidations contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/liquidations-mapping.ts
+      entities:
+        - AccountFlaggedForLiquidation
+        - AccountRemovedFromLiquidation
+      abis:
+        - name: Liquidations
+          file: ./abis/Liquidations.json
+        - name: AddressResolver
+          file: ./abis/AddressResolver.json
+        - name: Oikos
+          file: ./abis/Oikos.json
+      eventHandlers:
+        - event: AccountFlaggedForLiquidation(indexed address,uint256)
+          handler: handleAccountFlaggedForLiquidation
+        - event: AccountRemovedFromLiquidation(indexed address,uint256)
+          handler: handleAccountRemovedFromLiquidation
