@@ -26,7 +26,7 @@
     "remove:loans": "graph remove oikos-team/OikosLoans --node https://api.thegraph.com/deploy/",
     "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ ",
     "deploy:oks": "npm run prepare:oks && graph deploy oikos-cash/oikos --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug; npm run cleanup; exit $EXIT_CODE",
-    "deploy:rates": "npm run prepare:rates && graph deploy oikos-cash/rates --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug; npm run cleanup;",
+    "deploy:rates": "npm run prepare:rates && graph deploy --access-token 3073ececda1f4741ae4e7a6fcd7b6cd7  --product hosted-service oikos-cash/rates --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug; npm run cleanup;",
     "deploy:exchanges": "npm run prepare:exchanges && graph deploy oikos-cash/exchanges --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug; npm run cleanup; exit $EXIT_CODE",
     "deploy:exchanger": "npm run prepare:exchanger && graph deploy oikos1/exchanger --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug; npm run cleanup; exit $EXIT_CODE",
     "deploy:loans": "npm run prepare:loans && graph deploy oikos-cash/loans --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug; npm run cleanup; exit $EXIT_CODE",
