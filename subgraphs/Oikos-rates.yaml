@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0xe1ff83762F2db7274b6AC2c1C9Bb75B2A8574EaF' 
       abi: ExchangeRates
-      startBlock: 9920205
+      startBlock: 9520205
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
@@ -30,7 +30,7 @@ dataSources:
     source:
       address: '0x137924d7c36816e0dcaf016eb617cc2c92c05782' 
       abi: AccessControlAggregatorBNB
-      startBlock: 9920205
+      startBlock: 9520205
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
@@ -52,7 +52,7 @@ dataSources:
     source:
       address: '0x178ba789e24a1d51e9ea3cb1db3b52917963d71d' 
       abi: AccessControlAggregatorBTC
-      startBlock: 9920205
+      startBlock: 9520205
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
@@ -74,7 +74,7 @@ dataSources:
     source:
       address: '0xfc3069296a691250ffdf21fe51340fdd415a76ed' 
       abi: AccessControlAggregatorETH
-      startBlock: 9920205
+      startBlock: 9520205
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
@@ -96,7 +96,7 @@ dataSources:
     source:
       address: '0xc54645d805aca807e7f40b9308d159bb62939e3a' 
       abi: AccessControlAggregatorXAU
-      startBlock: 9920205
+      startBlock: 9520205
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
@@ -118,7 +118,7 @@ dataSources:
     source:
       address: '0x7935a51addab8550d346feef34e02f67c9330109' 
       abi: AccessControlAggregatorCAKE
-      startBlock: 9920205
+      startBlock: 9520205
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
@@ -140,7 +140,7 @@ dataSources:
     source:
       address: '0xe978daa50d3a8574f139c1e3fe5d511ddb323bc5' 
       abi: AccessControlAggregatorDOT
-      startBlock: 9920205
+      startBlock: 9520205
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
@@ -162,7 +162,7 @@ dataSources:
     source:
       address: '0xfb3e6157ba71c0d8853690c4fd3ff88109a79103' 
       abi: AccessControlAggregatorICP
-      startBlock: 9920205
+      startBlock: 9520205
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
