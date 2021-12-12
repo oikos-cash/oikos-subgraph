@@ -225,7 +225,7 @@
         "type": "address[]"
       },
       {
-        "name": "sUSDAmounts",
+        "name": "oUSDAmounts",
         "type": "uint256[]"
       }
     ],

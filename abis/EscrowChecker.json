@@ -22,7 +22,7 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "oikos_escrow",
+    "name": "Oikos_escrow",
     "outputs": [
       {
         "name": "",
@@ -32,7 +32,7 @@
     "payable": false,
     "stateMutability": "view",
     "type": "function",
-    "signature": "0x8c7a47bc"
+    "signature": "0xf412f4cf"
   },
   {
     "inputs": [
