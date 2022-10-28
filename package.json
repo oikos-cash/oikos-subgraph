@@ -39,7 +39,7 @@
   "dependencies": {
     "@graphprotocol/graph-cli": "git://github.com/graphprotocol/graph-cli.git#ebeeba0009f026bacf940f25ee7b875fe7676032",
     "@graphprotocol/graph-ts": "0.18.1",
-    "@oikos/oikos-bsc": "^0.2.60",
+    "@oikos/oikos-bsc": "^0.2.61",
     "chalk": "2.4.2",
     "commander": "2.20.0",
     "ethers": "4.0.27"
